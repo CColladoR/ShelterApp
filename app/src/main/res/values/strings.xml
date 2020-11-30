@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Shelter</string>
+    <string name="search">Buscar</string>
+    <string name="empty_shelter_title">Aún no hay ningún animal</string>
 </resources>
