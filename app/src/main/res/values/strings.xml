@@ -2,4 +2,12 @@
     <string name="app_name">Shelter</string>
     <string name="search">Buscar</string>
     <string name="empty_shelter_title">Aún no hay ningún animal</string>
+    <string name="save">Guardar</string>
+    <string name="gender_male">Macho</string>
+    <string name="gender_female">Hembra</string>
+    <string name="gender_unknown">Desconocido</string>
+    <string name="weight">Peso</string>
+    <string name="breed">Raza</string>
+    <string name="name">Nombre</string>
+    <string name="update_pet">Actualizar</string>
 </resources>

@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Shelter">
-        <activity android:name=".CatalogActivity"></activity>
+        <activity android:name=".activities.EditorActivity"></activity>
+        <activity android:name=".activities.CatalogActivity" />
     </application>
 
 </manifest>

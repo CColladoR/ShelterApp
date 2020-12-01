@@ -1,4 +1,4 @@
-package com.ccr.shelter;
+package com.ccr.shelter.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
@@ -13,10 +13,13 @@ import android.view.View;
 import android.widget.SearchView;
 import android.widget.Toast;
 
+import com.ccr.shelter.R;
 import com.ccr.shelter.adapter.PetListAdapter;
+import com.ccr.shelter.petData.Pet;
 import com.ccr.shelter.viewmodel.PetViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -123,13 +126,16 @@ public class CatalogActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == NEW_WORD_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
+            Date date;
             Pet pet = new Pet(
                     0,
-                    Objects.requireNonNull(data.getStringExtra("Nombre")),
-                    Objects.requireNonNull(data.getStringExtra("Raza")),
-                    data.getIntExtra("Género", 0),
-                    data.getIntExtra("Peso", 0),
-                    data.getByteArrayExtra("Imagen"));
+                    Objects.requireNonNull(data.getStringExtra("Name")),
+                    Objects.requireNonNull(data.getStringExtra("Breed")),
+                    data.getIntExtra("Gender", 0),
+                    data.getIntExtra("Weight", 0),
+                    data.getByteArrayExtra("Image"),
+                    data.getStringExtra("Date"),
+                    data.getStringExtra("Details"));
 
 
             mPetViewModel.insert(pet);

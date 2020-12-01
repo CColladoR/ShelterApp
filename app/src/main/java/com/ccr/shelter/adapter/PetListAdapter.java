@@ -1,5 +1,11 @@
 package com.ccr.shelter.adapter;
 
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.Build;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
@@ -8,7 +14,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.ccr.shelter.R;
+import com.ccr.shelter.activities.EditorActivity;
+import com.ccr.shelter.petData.Pet;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class PetListAdapter extends RecyclerView.Adapter<PetListAdapter.PetViewHolder> implements Filterable {
 
@@ -17,7 +31,9 @@ public class PetListAdapter extends RecyclerView.Adapter<PetListAdapter.PetViewH
         private final TextView breedView;
         private final ImageView genderView;
         private final TextView weightView;
-        private final ImageView imageView;
+        //private final ImageView imageView;
+        //private final TextView dateView;
+        //private final TextView detailsView;
 
         private PetViewHolder(View itemView) {
             super(itemView);
@@ -26,7 +42,10 @@ public class PetListAdapter extends RecyclerView.Adapter<PetListAdapter.PetViewH
             breedView = itemView.findViewById(R.id.breed);
             genderView = itemView.findViewById(R.id.gender);
             weightView = itemView.findViewById(R.id.weight);
-            imageView = itemView.findViewById(R.id.image);
+            //imageView = itemView.findViewById(R.id.imagePet);
+            //dateView = itemView.findViewById(R.id.date);
+            //detailsView = itemView.findViewById(R.id.details);
+
         }
 
         public String getName() {
@@ -35,26 +54,102 @@ public class PetListAdapter extends RecyclerView.Adapter<PetListAdapter.PetViewH
 
     }
 
-        @Override
-        public Filter getFilter() {
-            return null;
-        }
+    private final LayoutInflater mInflater;
+    private List<Pet> mPets;
+    public static List<Pet> allPets;
 
-        @NonNull
-        @Override
-        public PetListAdapter.PetViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            View itemView = mInflater.inflate(R.layout.item_list, parent, false);
-            return new PetViewHolder(itemView);
-        }
+    public PetListAdapter(Context context) {
+        mInflater = LayoutInflater.from(context);
+    }
 
-        @Override
-        public void onBindViewHolder(@NonNull PetListAdapter.PetViewHolder holder, int position) {
+    @NonNull
+    @Override
+    public PetListAdapter.PetViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View itemView = mInflater.inflate(R.layout.list_item, parent, false);
+        return new PetViewHolder(itemView);
+    }
 
-        }
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    @Override
+    public void onBindViewHolder(@NonNull PetListAdapter.PetViewHolder holder, int position) {
+        if (mPets != null) {
+            Pet current = mPets.get(position);
 
-        @Override
-        public int getItemCount() {
-            return 0;
+            holder.nameView.setText(current.getName());
+            holder.breedView.setText(current.getBreed());
+            holder.genderView.setImageResource(genderSelecting(current.getGender()));
+            holder.weightView.setText(String.valueOf(current.getWeight()));
+            Bitmap bmp = BitmapFactory.decodeByteArray(current.getImage(), 0, current.getImage().length);
+            holder.imageView.setImageBitmap(bmp);
+            holder.imageView.setClipToOutline(true);
+
+            holder.itemView.setOnClickListener(view -> {
+                Intent intent = new Intent(view.getContext(), EditorActivity.class);
+                intent.putExtra("Id",current.getId());
+
+                view.getContext().startActivity(intent);
+            });
         }
     }
+
+
+    @Override
+    public int getItemCount() {
+        if(mPets != null)
+            return mPets.size();
+        else return 0;
+    }
+
+
+    public void setPets(List<Pet> pets) {
+        this.mPets = pets;
+        allPets = pets;
+        notifyDataSetChanged();
+    }
+
+    private int genderSelecting(int gender){
+        switch (gender){
+            case 1: return R.drawable.ic_male;
+            case 2: return R.drawable.ic_female;
+            default: return  R.drawable.ic_gender_unknown;
+        }
+    }
+
+
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+
+            @Override
+            protected FilterResults performFiltering(CharSequence constraint) {
+                FilterResults results = new FilterResults();
+                if (constraint == null || constraint.length() == 0) {
+                    results.count = allPets.size();
+                    results.values = allPets;
+                } else{
+                    String searchStr = constraint.toString().toUpperCase();
+                    List<Pet> resultsData = new ArrayList<>();
+                    for (Pet pet :
+                            allPets) {
+                        if(pet.getName().toUpperCase().contains(searchStr))
+                            resultsData.add(pet);
+                    }
+                    results.count = resultsData.size();
+                    results.values = resultsData;
+                }
+                return results;
+
+            }
+
+            @Override
+            protected void publishResults(CharSequence constraint, FilterResults results) {
+                mPets = (List<Pet>) results.values;
+                notifyDataSetChanged();
+            }
+        };
+    }
+
+}
+
+
 
