@@ -31,7 +31,7 @@ public class PetListAdapter extends RecyclerView.Adapter<PetListAdapter.PetViewH
         private final TextView breedView;
         private final ImageView genderView;
         private final TextView weightView;
-        //private final ImageView imageView;
+        private final ImageView imageView;
         //private final TextView dateView;
         //private final TextView detailsView;
 
@@ -42,7 +42,7 @@ public class PetListAdapter extends RecyclerView.Adapter<PetListAdapter.PetViewH
             breedView = itemView.findViewById(R.id.breed);
             genderView = itemView.findViewById(R.id.gender);
             weightView = itemView.findViewById(R.id.weight);
-            //imageView = itemView.findViewById(R.id.imagePet);
+            imageView = itemView.findViewById(R.id.pet_image);
             //dateView = itemView.findViewById(R.id.date);
             //detailsView = itemView.findViewById(R.id.details);
 
@@ -74,7 +74,6 @@ public class PetListAdapter extends RecyclerView.Adapter<PetListAdapter.PetViewH
     public void onBindViewHolder(@NonNull PetListAdapter.PetViewHolder holder, int position) {
         if (mPets != null) {
             Pet current = mPets.get(position);
-
             holder.nameView.setText(current.getName());
             holder.breedView.setText(current.getBreed());
             holder.genderView.setImageResource(genderSelecting(current.getGender()));
@@ -109,9 +108,12 @@ public class PetListAdapter extends RecyclerView.Adapter<PetListAdapter.PetViewH
 
     private int genderSelecting(int gender){
         switch (gender){
-            case 1: return R.drawable.ic_male;
-            case 2: return R.drawable.ic_female;
-            default: return  R.drawable.ic_gender_unknown;
+            case 1:
+                return R.drawable.ic_male;
+            case 2:
+                return R.drawable.ic_female;
+            default:
+                return  R.drawable.ic_gender_unknown;
         }
     }
 

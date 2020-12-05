@@ -31,13 +31,14 @@ public class CatalogActivity extends AppCompatActivity {
     SearchView mSearchView;
     View mShelterEmpty;
     private PetListAdapter mAdapter;
-
     RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_catalog);
+
+        setUI();
 
         mAdapter = new PetListAdapter(this);
         recyclerView.setAdapter(mAdapter);
@@ -55,8 +56,7 @@ public class CatalogActivity extends AppCompatActivity {
                 mShelterEmpty.setVisibility(View.VISIBLE);
             }
         });
-
-
+    setSearchView();
     }
 
     void setUI() {
@@ -126,16 +126,16 @@ public class CatalogActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == NEW_WORD_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
-            Date date;
             Pet pet = new Pet(
                     0,
                     Objects.requireNonNull(data.getStringExtra("Name")),
                     Objects.requireNonNull(data.getStringExtra("Breed")),
                     data.getIntExtra("Gender", 0),
                     data.getIntExtra("Weight", 0),
-                    data.getByteArrayExtra("Image"),
-                    data.getStringExtra("Date"),
-                    data.getStringExtra("Details"));
+                    data.getByteArrayExtra("Image")
+                   // data.getStringExtra("Date"),
+                    //data.getStringExtra("Details")
+                    );
 
 
             mPetViewModel.insert(pet);

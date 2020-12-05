@@ -8,6 +8,20 @@
     <string name="gender_unknown">Desconocido</string>
     <string name="weight">Peso</string>
     <string name="breed">Raza</string>
-    <string name="name">Nombre</string>
+    <string name="name">Nombre del animal</string>
     <string name="update_pet">Actualizar</string>
+    <string name="category_info">Información</string>
+    <string name="hint_pet_name">Nombre</string>
+    <string name="hint_pet_breed">Raza</string>
+    <string name="category_gender">Género</string>
+    <string name="category_measurement">Peso</string>
+    <string name="hint_pet_weight">Peso</string>
+    <string name="unit_pet_weight">kg</string>
+    <string name="pick_image">Elegir una imagen</string>
+    <string name="editor_activity_title_new_pet">Añadir un animal</string>
+    <string name="category_date">Fecha</string>
+    <string name="hint_pet_birthdate">Fecha de nacimiento</string>
+    <string name="category_details">Detalles</string>
+    <string name="hint_pet_details">Detalles</string>
+    <string name="category_data">Otros datos</string>
 </resources>

@@ -24,6 +24,7 @@ import android.widget.Toast;
 import com.ccr.shelter.R;
 import com.ccr.shelter.petData.Pet;
 import com.ccr.shelter.viewmodel.PetViewModel;
+import com.google.android.material.textfield.TextInputEditText;
 
 import java.io.ByteArrayOutputStream;
 
@@ -33,11 +34,11 @@ public class EditorActivity extends AppCompatActivity {
 
     private static int RESULT_LOAD_IMAGE = 1;
 
-    private EditText mNameEditText;
+    private TextInputEditText mNameEditText;
 
-    private EditText mBreedEditText;
+    private TextInputEditText mBreedEditText;
 
-    private EditText mWeightEditText;
+    private TextInputEditText mWeightEditText;
 
     private Spinner mGenderSpinner;
 
@@ -51,8 +52,8 @@ public class EditorActivity extends AppCompatActivity {
     String breed;
     int weight;
     byte[] imageAsByteArray;
-    String details;
-    String birthdate;
+    // String details;
+    //String birthdate;
 
 
     final int PIC_CROP = 1;
@@ -61,7 +62,6 @@ public class EditorActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editor);
-
 
         setViews();
 
@@ -94,12 +94,9 @@ public class EditorActivity extends AppCompatActivity {
         mImageView = findViewById(R.id.pet_image);
     }
 
-    /**
-     * Setup the dropdown spinner that allows the user to select the gender of the pet.
-     */
+
     private void setupSpinner() {
-        // Create mAdapter for spinner. The list options are from the String array it will use
-        // the spinner will use the default layout
+
         ArrayAdapter genderSpinnerAdapter = ArrayAdapter.createFromResource(this,
                 R.array.array_gender_options, android.R.layout.simple_spinner_item);
 
@@ -147,8 +144,8 @@ public class EditorActivity extends AppCompatActivity {
             replyIntent.putExtra("Gender", mGender);
             replyIntent.putExtra("Weight", weight);
             replyIntent.putExtra("Image", imageAsByteArray);
-            replyIntent.putExtra("Date", birthdate);
-            replyIntent.putExtra("Details", details);
+            //replyIntent.putExtra("Date", birthdate);
+          //  replyIntent.putExtra("Details", details);
 
             setResult(RESULT_OK, replyIntent);
         }
@@ -158,13 +155,13 @@ public class EditorActivity extends AppCompatActivity {
 
     private void updatePet() {
         getValues();
-        mPetViewModel.update(new Pet(id, name, breed, mGender, weight, imageAsByteArray, birthdate, details));
+        mPetViewModel.update(new Pet(id, name, breed, mGender, weight, imageAsByteArray));
         finish();
     }
 
     private void deletePet() {
         getValues();
-        mPetViewModel.delete(new Pet(id, name, breed, mGender, weight, imageAsByteArray, birthdate, details));
+        mPetViewModel.delete(new Pet(id, name, breed, mGender, weight, imageAsByteArray));
         finish();
     }
 

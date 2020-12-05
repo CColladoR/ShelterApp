@@ -3,10 +3,12 @@
     <color name="primary_color">#9ebc9e</color>
     <color name="primary_color_dark">#6f8c70</color>
     <color name="primary_color_light">#6f8c70</color>
-   <color name="black">#cfefcf</color>
 
     <color name="secondary">#ffcfd2</color>
     <color name="secondary_dark">#cb9ea1</color>
+
+    <color name="black">#000000</color>
+    <color name="white">#ffffff</color>
 
 
 </resources>
