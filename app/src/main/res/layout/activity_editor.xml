@@ -25,7 +25,8 @@
             android:layout_height="wrap_content"
             android:layout_width="0dp"
             android:layout_weight="2"
-            android:paddingLeft="4dp"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp"
             android:orientation="vertical">
 
             <!-- Name -->
@@ -92,7 +93,8 @@
                 android:id="@+id/spinner_gender"
                 android:layout_height="48dp"
                 android:layout_width="wrap_content"
-                android:paddingRight="16dp"
+                android:paddingEnd="16dp"
+                android:paddingStart="16dp"
                 android:spinnerMode="dropdown"/>
         </LinearLayout>
     </LinearLayout>
@@ -112,7 +114,8 @@
             android:layout_height="wrap_content"
             android:layout_width="0dp"
             android:layout_weight="2"
-            android:paddingLeft="4dp"
+            android:paddingEnd="4dp"
+            android:paddingStart="4dp"
             android:orientation="vertical">
 
             <!-- BD -->
@@ -154,22 +157,23 @@
         </LinearLayout>
     </LinearLayout>
 
-
     <LinearLayout
         android:id="@+id/container_details"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:baselineAligned="false">
 
         <!-- Input -->
         <RelativeLayout
             android:layout_height="wrap_content"
             android:layout_width="0dp"
             android:layout_weight="2"
-            android:paddingLeft="4dp">
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp">
 
             <com.google.android.material.textfield.TextInputLayout
-                android:inputType="textCapWords"
+                android:inputType="textLongMessage"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:hint="@string/hint_pet_details"
@@ -205,8 +209,15 @@
 
     </RelativeLayout>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        android:layout_gravity="end"
+        android:layout_gravity="bottom|center_horizontal"
         android:id="@+id/pick_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -217,7 +228,7 @@
         app:iconTint="@color/white"
         android:backgroundTint="@color/secondary_dark"
         />
-
+    </RelativeLayout>
 
 </LinearLayout>
 
