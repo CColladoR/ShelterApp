@@ -120,16 +120,22 @@
 
             <!-- BD -->
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/pet_birthdate"
                 android:inputType="date"
                 android:layout_width="match_parent"
                 app:endIconMode="clear_text"
+                android:clickable="true"
+                android:editable="false"
+
                 android:layout_height="wrap_content"
                 android:hint="@string/hint_pet_birthdate"
                 app:boxStrokeColor="@color/secondary_dark"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edit_pet_birthdate"
+                    android:focusableInTouchMode="false"
+                    android:clickable="true"
+                    android:editable="false"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     />
@@ -178,6 +184,7 @@
                 android:layout_height="150dp"
                 android:hint="@string/hint_pet_details"
                 app:endIconMode="clear_text"
+                android:scrollbars="vertical"
                 app:boxStrokeColor="@color/secondary_dark"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
@@ -189,7 +196,6 @@
             </com.google.android.material.textfield.TextInputLayout>
         </RelativeLayout>
     </LinearLayout>
-
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -216,18 +222,18 @@
         android:orientation="horizontal"
         android:padding="16dp">
 
-    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        android:layout_gravity="bottom|center_horizontal"
-        android:id="@+id/pick_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="onClickPickImage"
-        android:text="@string/pick_image"
-        android:textColor="@color/white"
-        app:icon="@drawable/ic_photo"
-        app:iconTint="@color/white"
-        android:backgroundTint="@color/secondary_dark"
-        />
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:layout_gravity="bottom|center_horizontal"
+            android:id="@+id/pick_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onClickPickImage"
+            android:text="@string/pick_image"
+            android:textColor="@color/white"
+            app:icon="@drawable/ic_photo"
+            app:iconTint="@color/white"
+            android:backgroundTint="@color/secondary_dark"
+            />
     </RelativeLayout>
 
 </LinearLayout>

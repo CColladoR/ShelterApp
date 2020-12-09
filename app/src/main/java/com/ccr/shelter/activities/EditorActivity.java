@@ -1,8 +1,10 @@
 package com.ccr.shelter.activities;
 
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.app.DatePickerDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -16,15 +18,18 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
+import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.ccr.shelter.R;
+import com.ccr.shelter.dialog.DatePickerFragment;
 import com.ccr.shelter.petData.Pet;
 import com.ccr.shelter.viewmodel.PetViewModel;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
+
 
 import java.io.ByteArrayOutputStream;
 
@@ -44,6 +49,12 @@ public class EditorActivity extends AppCompatActivity {
 
     private ImageView mImageView;
 
+    private TextInputLayout mBirthDateLayout;
+    private TextInputEditText mBirthDatePicker;
+
+    private TextInputEditText mDetails;
+
+
     Bundle extras;
 
     int id;
@@ -52,8 +63,8 @@ public class EditorActivity extends AppCompatActivity {
     String breed;
     int weight;
     byte[] imageAsByteArray;
-    // String details;
-    //String birthdate;
+    String birthdate;
+    String details;
 
 
     final int PIC_CROP = 1;
@@ -64,8 +75,16 @@ public class EditorActivity extends AppCompatActivity {
         setContentView(R.layout.activity_editor);
 
         setViews();
-
         setupSpinner();
+
+        mBirthDatePicker.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setupDialog();
+            }
+        });
+
+
 
         extras = getIntent().getExtras();
 
@@ -83,6 +102,9 @@ public class EditorActivity extends AppCompatActivity {
             setGender(selectedPet);
             Bitmap bmp = BitmapFactory.decodeByteArray(selectedPet.getImage(), 0, selectedPet.getImage().length);
             mImageView.setImageBitmap(bmp);
+            //mBreedEditText.setText(selectedPet.getDate);
+            //mDetails.setText(selectedPet.getDetails);
+
         }
     }
 
@@ -92,6 +114,11 @@ public class EditorActivity extends AppCompatActivity {
         mWeightEditText = findViewById(R.id.edit_pet_weight);
         mGenderSpinner = findViewById(R.id.spinner_gender);
         mImageView = findViewById(R.id.pet_image);
+        mBirthDateLayout = findViewById(R.id.pet_birthdate);
+        mBirthDatePicker = findViewById(R.id.edit_pet_birthdate);
+        mDetails = findViewById(R.id.edit_pet_details);
+
+
     }
 
 
@@ -100,7 +127,6 @@ public class EditorActivity extends AppCompatActivity {
         ArrayAdapter genderSpinnerAdapter = ArrayAdapter.createFromResource(this,
                 R.array.array_gender_options, android.R.layout.simple_spinner_item);
 
-        // Specify dropdown layout style - simple list view with 1 item per line
         genderSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
 
         mGenderSpinner.setAdapter(genderSpinnerAdapter);
@@ -120,7 +146,6 @@ public class EditorActivity extends AppCompatActivity {
                 }
             }
 
-            // Because AdapterView is an abstract class, onNothingSelected must be defined
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
                 mGender = 0;
@@ -128,6 +153,17 @@ public class EditorActivity extends AppCompatActivity {
         });
     }
 
+    private void setupDialog(){
+
+        DatePickerFragment newFragment = DatePickerFragment.newInstance(new DatePickerDialog.OnDateSetListener(){
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int day) {
+                final String selectedDate = day + " / " + (month + 1) + " / " + year;
+                mBirthDatePicker.setText(selectedDate);
+            }
+        });
+        newFragment.show(getSupportFragmentManager(), "datePicker");
+    }
 
     private void insertPet() {
 
@@ -145,7 +181,7 @@ public class EditorActivity extends AppCompatActivity {
             replyIntent.putExtra("Weight", weight);
             replyIntent.putExtra("Image", imageAsByteArray);
             //replyIntent.putExtra("Date", birthdate);
-          //  replyIntent.putExtra("Details", details);
+            //  replyIntent.putExtra("Details", details);
 
             setResult(RESULT_OK, replyIntent);
         }
@@ -156,12 +192,15 @@ public class EditorActivity extends AppCompatActivity {
     private void updatePet() {
         getValues();
         mPetViewModel.update(new Pet(id, name, breed, mGender, weight, imageAsByteArray));
+        //mPetViewModel.update(new Pet(id, name, breed, mGender, weight, imageAsByteArray, birthdate, details));
         finish();
     }
 
     private void deletePet() {
         getValues();
         mPetViewModel.delete(new Pet(id, name, breed, mGender, weight, imageAsByteArray));
+        //mPetViewModel.delete(new Pet(id, name, breed, mGender, weight, imageAsByteArray, birthdate, details));
+
         finish();
     }
 
@@ -175,6 +214,8 @@ public class EditorActivity extends AppCompatActivity {
         weight = Integer.parseInt(mWeightEditText.getText().toString());
         BitmapDrawable imageDrawable = (BitmapDrawable) mImageView.getDrawable();
         imageAsByteArray = getBytesFromBitmap(imageDrawable.getBitmap());
+        details = mDetails.getText().toString();
+        birthdate = mBirthDatePicker.getText().toString();
     }
 
     @Override
@@ -243,11 +284,13 @@ public class EditorActivity extends AppCompatActivity {
         // respond to users whose devices do not support the crop action
         catch (ActivityNotFoundException anfe) {
             // display an error message
-            String errorMessage = "Whoops - your device doesn't support the crop action!";
+            String errorMessage = "Tu dispositivo no soporta la función de recortar imágenes";
             Toast toast = Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT);
             toast.show();
         }
     }
+
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
