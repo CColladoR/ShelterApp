@@ -298,7 +298,7 @@ public class EditorActivity extends AppCompatActivity {
 
         if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && null != data) {
             Uri imageUri = data.getData();
-            performCrop(imageUri);
+            //performCrop(imageUri);
         }
 
         if (requestCode == PIC_CROP) {
