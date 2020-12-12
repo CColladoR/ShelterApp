@@ -9,6 +9,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview"
+        tools:listitem="@layout/list_item"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_margin="16dp"
@@ -59,7 +60,8 @@
         <ImageView
             android:layout_width="350dp"
             android:layout_height="200dp"
-            android:src="@drawable/ic_imgpet" />
+            android:src="@drawable/ic_imgpet"
+           />
 
         <TextView
             android:layout_marginTop="8dp"

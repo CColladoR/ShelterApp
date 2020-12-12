@@ -24,6 +24,8 @@ import com.ccr.shelter.petData.Pet;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class PetListAdapter extends RecyclerView.Adapter<PetListAdapter.PetViewHolder> implements Filterable {
 
     class PetViewHolder extends RecyclerView.ViewHolder {
@@ -31,7 +33,7 @@ public class PetListAdapter extends RecyclerView.Adapter<PetListAdapter.PetViewH
         private final TextView breedView;
         private final ImageView genderView;
         private final TextView weightView;
-        private final ImageView imageView;
+        private final CircleImageView imageView;
         //private final TextView dateView;
         //private final TextView detailsView;
 
@@ -42,7 +44,7 @@ public class PetListAdapter extends RecyclerView.Adapter<PetListAdapter.PetViewH
             breedView = itemView.findViewById(R.id.breed);
             genderView = itemView.findViewById(R.id.gender);
             weightView = itemView.findViewById(R.id.weight);
-            imageView = itemView.findViewById(R.id.pet_image);
+            imageView = itemView.findViewById(R.id.image);
             //dateView = itemView.findViewById(R.id.date);
             //detailsView = itemView.findViewById(R.id.details);
 
@@ -79,8 +81,10 @@ public class PetListAdapter extends RecyclerView.Adapter<PetListAdapter.PetViewH
             holder.genderView.setImageResource(genderSelecting(current.getGender()));
             holder.weightView.setText(String.valueOf(current.getWeight()));
             Bitmap bmp = BitmapFactory.decodeByteArray(current.getImage(), 0, current.getImage().length);
+            holder.imageView.setRotation(90);
             holder.imageView.setImageBitmap(bmp);
             holder.imageView.setClipToOutline(true);
+
 
             holder.itemView.setOnClickListener(view -> {
                 Intent intent = new Intent(view.getContext(), EditorActivity.class);

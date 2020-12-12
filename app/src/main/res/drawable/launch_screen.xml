@@ -3,11 +3,9 @@
     android:opacity="opaque">
 <item android:drawable="@color/primary_color_dark"/>
     <item>
-
         <bitmap
             android:src="@drawable/logopink_144dp"
             android:gravity="center"
-
             />
     </item>
 </layer-list>

@@ -14,7 +14,9 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.graphics.drawable.BitmapDrawable;
+import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -38,6 +40,10 @@ import com.google.android.material.textfield.TextInputLayout;
 
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class EditorActivity extends AppCompatActivity {
 
@@ -95,7 +101,6 @@ public class EditorActivity extends AppCompatActivity {
             }
         });
 
-
         extras = getIntent().getExtras();
 
         if (extras != null) {
@@ -112,6 +117,7 @@ public class EditorActivity extends AppCompatActivity {
             setGender(selectedPet);
             Bitmap bmp = BitmapFactory.decodeByteArray(selectedPet.getImage(), 0, selectedPet.getImage().length);
             mImageView.setImageBitmap(bmp);
+            mImageView.setRotation(90);
             //mBreedEditText.setText(selectedPet.getDate);
             //mDetails.setText(selectedPet.getDetails);
 
@@ -285,7 +291,7 @@ public class EditorActivity extends AppCompatActivity {
 
     public byte[] getBytesFromBitmap(Bitmap bitmap) {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 50, stream);
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 25, stream);
         return stream.toByteArray();
     }
 
@@ -310,12 +316,44 @@ public class EditorActivity extends AppCompatActivity {
             int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
             String picturePath = cursor.getString(columnIndex);
             cursor.close();
+            Bitmap loadedBitmap = BitmapFactory.decodeFile(picturePath);
 
-            mImageView.setRotation(90);
-            mImageView.setImageBitmap(BitmapFactory.decodeFile(picturePath));
+            ExifInterface exifInterface = null;
+            try {
+                File pictureFile = new File(picturePath);
+                exifInterface = new ExifInterface(pictureFile.getAbsolutePath());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
+            int orientation = ExifInterface.ORIENTATION_NORMAL;
+            if (exifInterface != null) {
+                orientation = exifInterface.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL);
+            }
+
+            switch (orientation) {
+                case ExifInterface.ORIENTATION_ROTATE_90:
+                    loadedBitmap = rotateBitmap(loadedBitmap, 90);
+                    break;
+                case ExifInterface.ORIENTATION_ROTATE_180:
+                    loadedBitmap = rotateBitmap(loadedBitmap, 180);
+                    break;
+
+                case ExifInterface.ORIENTATION_ROTATE_270:
+                    loadedBitmap = rotateBitmap(loadedBitmap, 270);
+                    break;
+
+            }
+
+            mImageView.setImageBitmap(loadedBitmap);
         }
 
+    }
+
+    public static Bitmap rotateBitmap(Bitmap bitmap, int degrees) {
+        Matrix matrix = new Matrix();
+        matrix.postRotate(degrees);
+        return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
     }
 
 }

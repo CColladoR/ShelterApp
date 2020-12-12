@@ -132,12 +132,11 @@
                 android:layout_width="match_parent"
                 app:endIconMode="clear_text"
                 android:clickable="true"
-                android:editable="false"
-
                 android:layout_height="wrap_content"
                 android:hint="@string/hint_pet_birthdate"
                 app:boxStrokeColor="@color/secondary_dark"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edit_pet_birthdate"
                     android:focusableInTouchMode="false"
@@ -219,7 +218,7 @@
             android:layout_height="150dp"
             android:src="@drawable/img_dog"
             app:civ_border_color="@color/primary_color"
-            app:civ_border_width="5dp"
+            app:civ_border_width="2dp"
            />
 
 
