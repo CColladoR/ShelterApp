@@ -24,4 +24,5 @@
     <string name="category_details">Detalles</string>
     <string name="hint_pet_details">Detalles</string>
     <string name="category_data">Otros datos</string>
+    <string name="errorMessageName">Los campos "Nombre", "Raza" y "Peso" no pueden estar vacíos.</string>
 </resources>

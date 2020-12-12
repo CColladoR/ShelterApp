@@ -55,8 +55,6 @@ public class EditorActivity extends AppCompatActivity {
 
     private ImageView mImageView;
 
-    private TextInputLayout mBirthDateLayout;
-
     private TextInputEditText mBirthDatePicker;
 
     private TextInputEditText mDetails;
@@ -86,6 +84,7 @@ public class EditorActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editor);
 
+        verifyStoragePermissions(this);
         setViews();
         setupSpinner();
 
@@ -127,11 +126,10 @@ public class EditorActivity extends AppCompatActivity {
      * @param activity
      */
     public static void verifyStoragePermissions(Activity activity) {
-        // Check if we have write permission
-        int permission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+
+        int permission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.READ_EXTERNAL_STORAGE);
 
         if (permission != PackageManager.PERMISSION_GRANTED) {
-            // We don't have permission so prompt the user
             ActivityCompat.requestPermissions(
                     activity,
                     PERMISSIONS_STORAGE,
@@ -146,7 +144,6 @@ public class EditorActivity extends AppCompatActivity {
         mWeightEditText = findViewById(R.id.edit_pet_weight);
         mGenderSpinner = findViewById(R.id.spinner_gender);
         mImageView = findViewById(R.id.pet_image);
-        mBirthDateLayout = findViewById(R.id.pet_birthdate);
         mBirthDatePicker = findViewById(R.id.edit_pet_birthdate);
         mDetails = findViewById(R.id.edit_pet_details);
 
@@ -202,8 +199,11 @@ public class EditorActivity extends AppCompatActivity {
 
         Intent replyIntent = new Intent();
 
-        if ((TextUtils.isEmpty(mNameEditText.getText())) || (TextUtils.isEmpty(mBreedEditText.getText()))) {
+        if ((TextUtils.isEmpty(mNameEditText.getText())) || (TextUtils.isEmpty(mBreedEditText.getText())) || (TextUtils.isEmpty(mWeightEditText.getText()))) {
+            Toast toastEmptyName = Toast.makeText(this, R.string.errorMessageName, Toast.LENGTH_SHORT);
+            toastEmptyName.show();
             setResult(RESULT_CANCELED, replyIntent);
+
         } else {
 
             replyIntent.putExtra("Name", name);
@@ -240,6 +240,7 @@ public class EditorActivity extends AppCompatActivity {
     }
 
     void getValues() {
+
         name = mNameEditText.getText().toString();
         breed = mBreedEditText.getText().toString();
         weight = Integer.parseInt(mWeightEditText.getText().toString());
@@ -247,6 +248,8 @@ public class EditorActivity extends AppCompatActivity {
         imageAsByteArray = getBytesFromBitmap(imageDrawable.getBitmap());
         details = mDetails.getText().toString();
         birthdate = mBirthDatePicker.getText().toString();
+
+
     }
 
     @Override
@@ -295,7 +298,7 @@ public class EditorActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK) {
+        if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && null != data) {
 
             Uri selectedImage = data.getData();
             String[] filePathColumn = { MediaStore.Images.Media.DATA };
@@ -308,64 +311,11 @@ public class EditorActivity extends AppCompatActivity {
             String picturePath = cursor.getString(columnIndex);
             cursor.close();
 
-            mImageView.setImageBitmap(BitmapFactory.decodeFile(picturePath));
             mImageView.setRotation(90);
+            mImageView.setImageBitmap(BitmapFactory.decodeFile(picturePath));
+
         }
 
     }
 
-
-
-   /* private void performCrop(Uri picUri) {
-        try {
-            Intent cropIntent = new Intent("com.android.camera.action.CROP");
-            // indicate image type and Uri
-            cropIntent.setDataAndType(picUri, "image/*");
-            // set crop properties here
-            cropIntent.putExtra("crop", true);
-            // indicate aspect of desired crop
-            cropIntent.putExtra("aspectX", 1);
-            cropIntent.putExtra("aspectY", 1);
-            // indicate output X and Y
-            cropIntent.putExtra("outputX", 128);
-            cropIntent.putExtra("outputY", 128);
-            // retrieve data on return
-            cropIntent.putExtra("return-data", true);
-            // start the activity - we handle returning in onActivityResult
-            startActivityForResult(cropIntent, PIC_CROP);
-        }
-        // respond to users whose devices do not support the crop action
-        catch (ActivityNotFoundException anfe) {
-            // display an error message
-            String errorMessage = "Tu dispositivo no admite la función de recortar imágenes";
-            Toast toast = Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT);
-            toast.show();
-        }
-    }
-
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && null != data) {
-            Uri imageUri = data.getData();
-            performCrop(imageUri);
-        }
-
-        if (requestCode == PIC_CROP) {
-            if (data != null) {
-                // get the returned data
-                Bundle extras = data.getExtras();
-                // get the cropped bitmap
-                Bitmap selectedBitmap = null;
-                if (extras != null) {
-                    selectedBitmap = extras.getParcelable("data");
-                }
-
-                mImageView.setImageBitmap(selectedBitmap);
-
-            }
-        }
-    }*/
 }
