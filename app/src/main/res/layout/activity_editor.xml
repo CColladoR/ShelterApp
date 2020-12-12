@@ -151,7 +151,7 @@
 
             <!-- Weight -->
             <com.google.android.material.textfield.TextInputLayout
-                android:inputType="textCapWords"
+                app:suffixText="kg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/hint_pet_weight"
@@ -161,6 +161,8 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edit_pet_weight"
+                    android:inputType="number|textNoSuggestions"
+                    android:digits="0123456789"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     />
@@ -186,7 +188,6 @@
             android:paddingEnd="4dp">
 
             <com.google.android.material.textfield.TextInputLayout
-                android:inputType="textLongMessage"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:hint="@string/hint_pet_details"
@@ -197,6 +198,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edit_pet_details"
+                    android:inputType="textLongMessage|textCapSentences"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     />
@@ -218,7 +220,6 @@
             android:src="@drawable/img_dog"
             app:civ_border_color="@color/primary_color"
             app:civ_border_width="5dp"
-            app:civ_circle_background_color="@color/secondary"
            />
 
 
@@ -236,7 +237,6 @@
         android:onClick="onClickPickImage"
         android:src="@drawable/ic_photo"
         android:padding="16dp"
-        app:rippleColor="@color/white"
         app:tint="@null"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"

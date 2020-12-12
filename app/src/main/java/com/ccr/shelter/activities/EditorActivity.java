@@ -2,16 +2,22 @@ package com.ccr.shelter.activities;
 
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.Manifest;
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -50,10 +56,10 @@ public class EditorActivity extends AppCompatActivity {
     private ImageView mImageView;
 
     private TextInputLayout mBirthDateLayout;
+
     private TextInputEditText mBirthDatePicker;
 
     private TextInputEditText mDetails;
-
 
     Bundle extras;
 
@@ -66,8 +72,14 @@ public class EditorActivity extends AppCompatActivity {
     String birthdate;
     String details;
 
-
     final int PIC_CROP = 1;
+
+    private static final int REQUEST_EXTERNAL_STORAGE = 1;
+    private static String[] PERMISSIONS_STORAGE = {
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE
+    };
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,7 +95,6 @@ public class EditorActivity extends AppCompatActivity {
                 setupDialog();
             }
         });
-
 
 
         extras = getIntent().getExtras();
@@ -108,6 +119,27 @@ public class EditorActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Checks if the app has permission to write to device storage
+     *
+     * If the app does not has permission then the user will be prompted to grant permissions
+     *
+     * @param activity
+     */
+    public static void verifyStoragePermissions(Activity activity) {
+        // Check if we have write permission
+        int permission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+
+        if (permission != PackageManager.PERMISSION_GRANTED) {
+            // We don't have permission so prompt the user
+            ActivityCompat.requestPermissions(
+                    activity,
+                    PERMISSIONS_STORAGE,
+                    REQUEST_EXTERNAL_STORAGE
+            );
+        }
+    }
+
     void setViews() {
         mNameEditText = findViewById(R.id.edit_pet_name);
         mBreedEditText = findViewById(R.id.edit_pet_breed);
@@ -120,7 +152,6 @@ public class EditorActivity extends AppCompatActivity {
 
 
     }
-
 
     private void setupSpinner() {
 
@@ -158,7 +189,7 @@ public class EditorActivity extends AppCompatActivity {
         DatePickerFragment newFragment = DatePickerFragment.newInstance(new DatePickerDialog.OnDateSetListener(){
             @Override
             public void onDateSet(DatePicker view, int year, int month, int day) {
-                final String selectedDate = day + " / " + (month + 1) + " / " + year;
+                final String selectedDate = day + "/" + (month + 1) + "/" + year;
                 mBirthDatePicker.setText(selectedDate);
             }
         });
@@ -234,7 +265,6 @@ public class EditorActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // User clicked on a menu option in the app bar overflow menu
         switch (item.getItemId()) {
             case R.id.action_save:
                 if (extras != null)
@@ -252,18 +282,41 @@ public class EditorActivity extends AppCompatActivity {
 
     public byte[] getBytesFromBitmap(Bitmap bitmap) {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 50, stream);
         return stream.toByteArray();
     }
 
     public void onClickPickImage(View view) {
         Intent i = new Intent(
                 Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-
         startActivityForResult(i, RESULT_LOAD_IMAGE);
     }
 
-    private void performCrop(Uri picUri) {
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK) {
+
+            Uri selectedImage = data.getData();
+            String[] filePathColumn = { MediaStore.Images.Media.DATA };
+
+            Cursor cursor = getContentResolver().query(selectedImage,
+                    filePathColumn, null, null, null);
+            cursor.moveToFirst();
+
+            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+            String picturePath = cursor.getString(columnIndex);
+            cursor.close();
+
+            mImageView.setImageBitmap(BitmapFactory.decodeFile(picturePath));
+            mImageView.setRotation(90);
+        }
+
+    }
+
+
+
+   /* private void performCrop(Uri picUri) {
         try {
             Intent cropIntent = new Intent("com.android.camera.action.CROP");
             // indicate image type and Uri
@@ -284,12 +337,11 @@ public class EditorActivity extends AppCompatActivity {
         // respond to users whose devices do not support the crop action
         catch (ActivityNotFoundException anfe) {
             // display an error message
-            String errorMessage = "Tu dispositivo no soporta la función de recortar imágenes";
+            String errorMessage = "Tu dispositivo no admite la función de recortar imágenes";
             Toast toast = Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT);
             toast.show();
         }
     }
-
 
 
     @Override
@@ -298,7 +350,7 @@ public class EditorActivity extends AppCompatActivity {
 
         if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && null != data) {
             Uri imageUri = data.getData();
-            //performCrop(imageUri);
+            performCrop(imageUri);
         }
 
         if (requestCode == PIC_CROP) {
@@ -315,5 +367,5 @@ public class EditorActivity extends AppCompatActivity {
 
             }
         }
-    }
+    }*/
 }
