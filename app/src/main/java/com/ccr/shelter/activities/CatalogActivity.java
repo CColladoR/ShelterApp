@@ -132,10 +132,10 @@ public class CatalogActivity extends AppCompatActivity {
                     Objects.requireNonNull(data.getStringExtra("Name")),
                     Objects.requireNonNull(data.getStringExtra("Breed")),
                     data.getIntExtra("Gender", 0),
+                    data.getStringExtra("Date"),
                     data.getIntExtra("Weight", 0),
+                    data.getStringExtra("Details"),
                     data.getByteArrayExtra("Image")
-                   // data.getStringExtra("Date"),
-                    //data.getStringExtra("Details")
                     );
 
 

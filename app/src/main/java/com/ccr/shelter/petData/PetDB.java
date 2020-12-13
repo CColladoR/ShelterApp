@@ -9,7 +9,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {Pet.class}, version = 1, exportSchema = false)
+@Database(entities = {Pet.class}, version = 2, exportSchema = false)
 public abstract class PetDB extends RoomDatabase {
 
     public abstract PetDAO petDAO();
@@ -26,11 +26,13 @@ public abstract class PetDB extends RoomDatabase {
                 INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                         PetDB.class, "pet_database")
                         .addCallback(sRoomDatabaseCallback)
+                        .fallbackToDestructiveMigration()
                         .build();
             }
         }
         return INSTANCE;
     }
+
 
     private static RoomDatabase.Callback sRoomDatabaseCallback = new RoomDatabase.Callback() {
         @Override

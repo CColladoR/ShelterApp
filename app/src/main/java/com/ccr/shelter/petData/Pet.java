@@ -17,20 +17,20 @@ public class Pet {
     private String breed;
     private int gender;
     private int weight;
-    //private String birthdate;
-    //private String details;
+    private String birthdate;
+    private String details;
     @ColumnInfo(typeAffinity = ColumnInfo.BLOB)
     private byte[] image;
 
-    public Pet(int id,@NonNull String name,@NonNull String breed, int gender, int weight, byte[] image) {
+    public Pet(int id,@NonNull String name,@NonNull String breed, int gender, String birthdate, int weight, String details, byte[] image) {
         this.id = id;
         this.name = name;
         this.breed = breed;
         this.gender = gender;
         this.weight = weight;
         this.image = image;
-        /*this.birthdate = birthdate;
-        this.details = details;*/
+        this.birthdate = birthdate;
+        this.details = details;
     }
 
     public int getId() {
@@ -59,14 +59,13 @@ public class Pet {
         return image;
     }
 
-   /* public String getBirthdate(){
+   public String getBirthdate(){
         return birthdate;
     }
 
     public String getDetails(){
         return details;
     }
-*/
 
     public static final int UNKNOWN = 0;
     public static final int MALE = 1;

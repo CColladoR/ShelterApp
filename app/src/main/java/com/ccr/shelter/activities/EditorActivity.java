@@ -117,11 +117,12 @@ public class EditorActivity extends AppCompatActivity {
             setGender(selectedPet);
             Bitmap bmp = BitmapFactory.decodeByteArray(selectedPet.getImage(), 0, selectedPet.getImage().length);
             mImageView.setImageBitmap(bmp);
-            mImageView.setRotation(90);
-            //mBreedEditText.setText(selectedPet.getDate);
-            //mDetails.setText(selectedPet.getDetails);
+            mBirthDatePicker.setText(selectedPet.getBirthdate());
+            mDetails.setText(selectedPet.getDetails());
 
         }
+
+
     }
 
     /**
@@ -215,10 +216,10 @@ public class EditorActivity extends AppCompatActivity {
             replyIntent.putExtra("Name", name);
             replyIntent.putExtra("Breed", breed);
             replyIntent.putExtra("Gender", mGender);
+            replyIntent.putExtra("Date", birthdate);
             replyIntent.putExtra("Weight", weight);
             replyIntent.putExtra("Image", imageAsByteArray);
-            //replyIntent.putExtra("Date", birthdate);
-            //  replyIntent.putExtra("Details", details);
+
 
             setResult(RESULT_OK, replyIntent);
         }
@@ -228,15 +229,13 @@ public class EditorActivity extends AppCompatActivity {
 
     private void updatePet() {
         getValues();
-        mPetViewModel.update(new Pet(id, name, breed, mGender, weight, imageAsByteArray));
-        //mPetViewModel.update(new Pet(id, name, breed, mGender, weight, imageAsByteArray, birthdate, details));
+        mPetViewModel.update(new Pet(id, name, breed, mGender, birthdate, weight, details, imageAsByteArray));
         finish();
     }
 
     private void deletePet() {
         getValues();
-        mPetViewModel.delete(new Pet(id, name, breed, mGender, weight, imageAsByteArray));
-        //mPetViewModel.delete(new Pet(id, name, breed, mGender, weight, imageAsByteArray, birthdate, details));
+        mPetViewModel.delete(new Pet(id, name, breed, mGender, birthdate, weight, details, imageAsByteArray));
 
         finish();
     }
