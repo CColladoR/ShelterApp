@@ -1,6 +1,7 @@
 package com.ccr.shelter.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -36,6 +37,7 @@ public class CatalogActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setTheme(R.style.Theme_Shelter);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_catalog);
 

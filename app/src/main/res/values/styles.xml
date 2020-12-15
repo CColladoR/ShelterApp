@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Theme of the editor -->
-    <style name="EditorTheme" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <!-- Editor style -->
+    <style name="EditorTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
         <item name="colorPrimary">@color/primary_color</item>
         <item name="colorPrimaryDark">@color/primary_color_dark</item>
         <item name="colorAccent">@color/secondary_dark</item>
         <item name="actionBarItemBackground">@android:color/white</item>
     </style>
 
-    <!-- Style for a category in the editor -->
+    <!-- Category style -->
     <style name="CategoryStyle">
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">0dp</item>
@@ -18,8 +18,5 @@
         <item name="android:fontFamily">sans-serif-medium</item>
         <item name="android:textAppearance">?android:textAppearanceSmall</item>
     </style>
-
-
-
 
 </resources>

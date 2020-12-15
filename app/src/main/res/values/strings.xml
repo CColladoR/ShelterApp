@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Shelter</string>
     <string name="search">Buscar</string>
-    <string name="empty_shelter_title">Aún no hay ningún animal</string>
+    <string name="empty_shelter_title">Aún no hay ningún animal. Añade uno tocando el botón de la esquina inferior derecha.</string>
     <string name="save">Guardar</string>
     <string name="gender_male">Macho</string>
     <string name="gender_female">Hembra</string>
