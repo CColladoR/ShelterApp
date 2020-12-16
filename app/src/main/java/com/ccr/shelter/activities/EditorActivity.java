@@ -7,8 +7,9 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
-import android.content.ActivityNotFoundException;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -36,14 +37,11 @@ import com.ccr.shelter.dialog.DatePickerFragment;
 import com.ccr.shelter.petData.Pet;
 import com.ccr.shelter.viewmodel.PetViewModel;
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
 
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
-
-import de.hdodenhof.circleimageview.CircleImageView;
 
 public class EditorActivity extends AppCompatActivity {
 
@@ -281,7 +279,30 @@ public class EditorActivity extends AppCompatActivity {
                     insertPet();
                 return true;
             case R.id.action_delete:
-                deletePet();
+                AlertDialog.Builder builder = new AlertDialog.Builder(EditorActivity.this);
+                builder.setMessage(R.string.dialog_delete_pet);
+                builder.setTitle(R.string.dialog_delete_pet_title);
+                builder.setCancelable(false);
+                builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog,
+                                        int which)
+                    {
+                        deletePet();
+                    }
+
+                });
+
+                builder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
+
                 return true;
         }
 

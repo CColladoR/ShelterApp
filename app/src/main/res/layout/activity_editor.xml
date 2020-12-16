@@ -18,6 +18,7 @@
 
 
         <LinearLayout
+            android:id="@+id/mLinearLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
@@ -27,17 +28,27 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:gravity="center"
+                android:orientation="horizontal"
                 android:padding="16dp">
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/pet_image"
                     android:layout_width="150dp"
                     android:layout_height="150dp"
+                    android:onClick="onClickPickImage"
                     android:src="@drawable/img_dog"
+                    android:tooltipText="Toca la imagen para elegir una foto."
                     app:civ_border_color="@color/primary_color"
-                    app:civ_border_width="2dp"
+                    app:civ_border_width="2dp" />
+
+                <ImageView
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_alignBottom="@+id/pet_image"
+                    android:layout_alignEnd="@+id/pet_image"
+                    android:src="@drawable/ic_tooltip_photo"
+                    android:onClick="onClickPickImage"
                     />
             </RelativeLayout>
 
@@ -193,6 +204,144 @@
 
                 </LinearLayout>
             </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            android:text="@string/ster_category"
+            style="@style/CategoryStyle"
+            />
+
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:paddingEnd="4dp"
+            android:paddingStart="4dp"
+            android:orientation="horizontal">
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+                <RadioButton android:id="@+id/radio_ster_yes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/yes"
+                    />
+                <!-- android:onClick="onRadioButtonClicked" -->
+
+                <RadioButton
+                    android:id="@+id/radio_ster_no"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/no" />
+                <!-- android:onClick="onRadioButtonClicked" -->
+
+            </RadioGroup>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+
+                <TextView
+                    android:text="@string/vacc_category"
+                    style="@style/CategoryStyle"
+                    />
+
+                <LinearLayout
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:paddingEnd="4dp"
+                    android:paddingStart="4dp"
+                    android:orientation="horizontal">
+
+                    <RadioGroup
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+                        <RadioButton android:id="@+id/radio_vacc_yes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/yes"
+                            />
+                        <!-- android:onClick="onRadioButtonClicked" -->
+
+                        <RadioButton
+                            android:id="@+id/radio_vacc_no"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/no" />
+                        <!-- android:onClick="onRadioButtonClicked" -->
+
+                    </RadioGroup>
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+
+                <TextView
+                    android:text="@string/desp_category"
+                    style="@style/CategoryStyle"
+                    />
+
+                <LinearLayout
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:paddingEnd="4dp"
+                    android:paddingStart="4dp"
+                    android:orientation="horizontal">
+
+                    <RadioGroup
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+                        <RadioButton android:id="@+id/radio_desp_yes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/yes"
+                            />
+                        <!-- android:onClick="onRadioButtonClicked" -->
+
+                        <RadioButton
+                            android:id="@+id/radio_desp_no"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/no" />
+                        <!-- android:onClick="onRadioButtonClicked" -->
+
+                    </RadioGroup>
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/container_details"
@@ -229,22 +378,7 @@
             </LinearLayout>
 
 
-
         </LinearLayout>
-
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/pick_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/secondary_dark"
-        android:onClick="onClickPickImage"
-        android:src="@drawable/ic_photo"
-        android:padding="16dp"
-        app:tint="@null"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        />
 
 </RelativeLayout>
 </ScrollView>

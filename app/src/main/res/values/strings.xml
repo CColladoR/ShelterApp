@@ -22,7 +22,16 @@
     <string name="category_date">Fecha</string>
     <string name="hint_pet_birthdate">Fecha de nacimiento</string>
     <string name="category_details">Detalles</string>
-    <string name="hint_pet_details">Detalles</string>
+    <string name="hint_pet_details">Otros detalles...</string>
     <string name="category_data">Otros datos</string>
+    <string name="ster_category">¿Esterilizado?</string>
+    <string name="vacc_category">¿Vacunado?</string>
+    <string name="desp_category">¿Desparasitado?</string>
+
+
     <string name="errorMessageName">Los campos "Nombre", "Raza" y "Peso" no pueden estar vacíos.</string>
+    <string name="yes">Sí</string>
+    <string name="no">No</string>
+    <string name="dialog_delete_pet">Se marcará como \"Adoptado\" y sus datos desaparecerán de la base de datos.</string>
+    <string name="dialog_delete_pet_title">"¿Estás seguro de querer eliminar el animal? "</string>
 </resources>
