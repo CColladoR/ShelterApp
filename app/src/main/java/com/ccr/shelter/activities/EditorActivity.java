@@ -272,13 +272,13 @@ public class EditorActivity extends AppCompatActivity {
 
     private void updatePet() {
         getValues();
-        mPetViewModel.update(new Pet(id, name, breed, mGender, birthdate, weight, details, imageAsByteArray));
+        mPetViewModel.update(new Pet(id, name, breed, mGender, birthdate, ster, vacc, desp, weight, details, imageAsByteArray));
         finish();
     }
 
     private void deletePet() {
         getValues();
-        mPetViewModel.delete(new Pet(id, name, breed, mGender, birthdate, weight, details, imageAsByteArray));
+        mPetViewModel.delete(new Pet(id, name, breed, mGender, birthdate, ster, vacc, desp, weight, details, imageAsByteArray));
 
         finish();
     }

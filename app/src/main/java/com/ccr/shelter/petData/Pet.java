@@ -26,7 +26,7 @@ public class Pet {
     private byte[] image;
 
 
-    public Pet(int id,@NonNull String name,@NonNull String breed, int gender, String birthdate, int weight, String details, byte[] image) {
+    public Pet(int id,@NonNull String name,@NonNull String breed, int gender, String birthdate, int sterilized, int vaccinated, int dewormed, int weight, String details, byte[] image) {
         this.id = id;
         this.name = name;
         this.breed = breed;
@@ -34,6 +34,9 @@ public class Pet {
         this.weight = weight;
         this.image = image;
         this.birthdate = birthdate;
+        this.sterilized = sterilized;
+        this.vaccinated = vaccinated;
+        this.dewormed = dewormed;
         this.details = details;
     }
 
@@ -67,12 +70,29 @@ public class Pet {
         return birthdate;
     }
 
+    public int getSterilized(){
+        return sterilized;
+    }
+
+    public int getVaccinated(){
+        return vaccinated;
+    }
+
+    public int getDewormed(){
+        return dewormed;
+    }
+
     public String getDetails(){
         return details;
     }
 
+
+
     public static final int UNKNOWN = 0;
     public static final int MALE = 1;
     public static final int FEMALE = 2;
+
+    public static final int NO = 0;
+    public static final int YES = 1;
 
 }
