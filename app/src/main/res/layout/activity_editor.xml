@@ -224,6 +224,7 @@
             android:orientation="horizontal">
 
             <RadioGroup
+                android:id="@+id/radioSter"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -232,15 +233,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/yes"
-                    />
-                <!-- android:onClick="onRadioButtonClicked" -->
+                    android:onClick="onRadioButtonClicked"/>
 
                 <RadioButton
                     android:id="@+id/radio_ster_no"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/no" />
-                <!-- android:onClick="onRadioButtonClicked" -->
+                    android:checked="true"
+                    android:text="@string/no"
+                    android:onClick="onRadioButtonClicked"/>
 
             </RadioGroup>
 
@@ -270,6 +271,7 @@
                     android:orientation="horizontal">
 
                     <RadioGroup
+                        android:id="@+id/radioVacc"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
@@ -278,16 +280,17 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/yes"
-                            />
-                        <!-- android:onClick="onRadioButtonClicked" -->
+                            android:onClick="onRadioButtonClicked"
+                        />
 
                         <RadioButton
                             android:id="@+id/radio_vacc_no"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/no" />
-                        <!-- android:onClick="onRadioButtonClicked" -->
-
+                            android:checked="true"
+                            android:text="@string/no"
+                            android:onClick="onRadioButtonClicked"
+                            />
                     </RadioGroup>
 
 
@@ -317,6 +320,7 @@
                     android:orientation="horizontal">
 
                     <RadioGroup
+                        android:id="@+id/radioDesp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
@@ -325,15 +329,16 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/yes"
-                            />
-                        <!-- android:onClick="onRadioButtonClicked" -->
+                            android:onClick="onRadioButtonClicked"/>
 
                         <RadioButton
                             android:id="@+id/radio_desp_no"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/no" />
-                        <!-- android:onClick="onRadioButtonClicked" -->
+                            android:checked="true"
+                            android:text="@string/no"
+                            android:onClick="onRadioButtonClicked"/>
+
 
                     </RadioGroup>
 

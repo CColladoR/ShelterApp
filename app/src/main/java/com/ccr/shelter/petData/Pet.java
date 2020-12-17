@@ -18,9 +18,13 @@ public class Pet {
     private int gender;
     private int weight;
     private String birthdate;
+    private int sterilized;
+    private int vaccinated;
+    private int dewormed;
     private String details;
     @ColumnInfo(typeAffinity = ColumnInfo.BLOB)
     private byte[] image;
+
 
     public Pet(int id,@NonNull String name,@NonNull String breed, int gender, String birthdate, int weight, String details, byte[] image) {
         this.id = id;

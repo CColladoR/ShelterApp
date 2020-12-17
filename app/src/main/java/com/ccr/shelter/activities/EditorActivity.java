@@ -29,6 +29,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -74,7 +75,9 @@ public class EditorActivity extends AppCompatActivity {
     String birthdate;
     String details;
 
-    final int PIC_CROP = 1;
+    private int ster = 0;
+    private int vacc = 0;
+    private int desp = 0;
 
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
     private static String[] PERMISSIONS_STORAGE = {
@@ -198,6 +201,45 @@ public class EditorActivity extends AppCompatActivity {
         newFragment.show(getSupportFragmentManager(), "datePicker");
     }
 
+    public void onRadioButtonClicked(View view) {
+        // Is the button now checked?
+        boolean checked = ((RadioButton) view).isChecked();
+
+        // Check which radio button was clicked
+        switch(view.getId()) {
+            case R.id.radio_ster_yes:
+                if (checked) {
+                    ster = 1;
+                    break;
+                }
+            case R.id.radio_ster_no:
+                if (checked) {
+                    ster = 0;
+                    break;
+                }
+            case R.id.radio_desp_yes:
+                if (checked) {
+                    desp = 1;
+                    break;
+                }
+            case R.id.radio_desp_no:
+                if (checked) {
+                    desp = 0;
+                    break;
+                }
+            case R.id.radio_vacc_yes:
+                if (checked){
+                    vacc = 1;
+                    break;
+                }
+            case R.id.radio_vacc_no:
+                if (checked) {
+                    vacc = 0;
+                    break;
+                }
+        }
+    }
+
     private void insertPet() {
 
         getValues();
@@ -217,6 +259,9 @@ public class EditorActivity extends AppCompatActivity {
             replyIntent.putExtra("Date", birthdate);
             replyIntent.putExtra("Weight", weight);
             replyIntent.putExtra("Image", imageAsByteArray);
+            replyIntent.putExtra("Sterilized", ster);
+            replyIntent.putExtra("Vaccinated", vacc);
+            replyIntent.putExtra("Dewormed", desp);
 
 
             setResult(RESULT_OK, replyIntent);
