@@ -39,6 +39,7 @@ import com.ccr.shelter.dialog.DatePickerFragment;
 import com.ccr.shelter.petData.Pet;
 import com.ccr.shelter.viewmodel.PetViewModel;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 
 import java.io.ByteArrayOutputStream;
@@ -187,6 +188,7 @@ public class EditorActivity extends AppCompatActivity {
         DatePickerFragment newFragment = DatePickerFragment.newInstance((view, year, month, day) -> {
             final String selectedDate = day + "/" + (month + 1) + "/" + year;
             mBirthDatePicker.setText(selectedDate);
+
         });
         newFragment.show(getSupportFragmentManager(), "datePicker");
     }
@@ -198,10 +200,12 @@ public class EditorActivity extends AppCompatActivity {
             case R.id.radio_ster_yes:
                 if (checked) {
                     ster = Pet.YES;
+
                 }
             case R.id.radio_ster_no:
                 if (checked) {
                     ster = Pet.NO;
+
                 }
             case R.id.radio_vacc_yes:
                 if (checked){
@@ -209,7 +213,8 @@ public class EditorActivity extends AppCompatActivity {
                 }
             case R.id.radio_vacc_no:
                 if (checked) {
-                    vacc = Pet.NO;                }
+                    vacc = Pet.NO;
+                }
         }
     }
 

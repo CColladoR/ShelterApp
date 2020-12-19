@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Shelter</string>
-    <string name="search">Buscar</string>
+    <string name="search">Buscar un animal</string>
     <string name="empty_shelter_title">Aún no hay ningún animal. Añade uno tocando el botón de la esquina inferior derecha.</string>
     <string name="save">Guardar</string>
     <string name="gender_male">Macho</string>
@@ -34,4 +34,5 @@
     <string name="no">No</string>
     <string name="dialog_delete_pet">Vas a marcar el animal como "Adoptado". Sus datos se eliminarán de la base de datos. (Esta opción no se puede deshacer)</string>
     <string name="dialog_delete_pet_title">"¿Estás segur@? "</string>
+    <string name="hint_pet_ster_date">Fecha</string>
 </resources>

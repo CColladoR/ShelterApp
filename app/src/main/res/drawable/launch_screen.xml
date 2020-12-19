@@ -5,7 +5,7 @@
     />
     <item>
         <bitmap
-            android:src="@drawable/logopink_144dp"
+            android:src="@drawable/logopink"
             android:gravity="center"
             />
     </item>

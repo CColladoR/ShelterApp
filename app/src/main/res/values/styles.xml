@@ -5,6 +5,7 @@
         <item name="colorPrimary">@color/primary_color</item>
         <item name="colorPrimaryDark">@color/primary_color_dark</item>
         <item name="colorAccent">@color/secondary_dark</item>
+        <item name="android:fontFamily">@font/rubik</item>
         <item name="actionBarItemBackground">@android:color/white</item>
     </style>
 
@@ -15,7 +16,7 @@
         <item name="android:layout_weight">1</item>
         <item name="android:paddingTop">16dp</item>
         <item name="android:textColor">@color/secondary_dark</item>
-        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:fontFamily">@font/rubik_medium</item>
         <item name="android:textAppearance">?android:textAppearanceSmall</item>
     </style>
 

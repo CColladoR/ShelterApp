@@ -9,7 +9,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {Pet.class}, version = 5, exportSchema = false)
+@Database(entities = {Pet.class}, version = 7, exportSchema = false)
 public abstract class PetDB extends RoomDatabase {
 
     public abstract PetDAO petDAO();

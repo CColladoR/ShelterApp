@@ -79,7 +79,7 @@
                             android:id="@+id/edit_pet_name"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            />
+                             />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -208,9 +208,10 @@
 
                     <RadioGroup
                         android:id="@+id/radio_group_ster"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
+                        android:layout_margin="4dp"
                         >
                         <RadioButton
                             android:id="@+id/radio_ster_yes"
@@ -230,7 +231,6 @@
                             />
 
                     </RadioGroup>
-
 
                 </LinearLayout>
 
