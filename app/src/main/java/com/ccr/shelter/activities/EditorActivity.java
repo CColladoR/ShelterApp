@@ -30,6 +30,7 @@ import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -43,6 +44,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.util.Date;
 
 public class EditorActivity extends AppCompatActivity {
 
@@ -51,18 +53,14 @@ public class EditorActivity extends AppCompatActivity {
     private static int RESULT_LOAD_IMAGE = 1;
 
     private TextInputEditText mNameEditText;
-
     private TextInputEditText mBreedEditText;
-
     private TextInputEditText mWeightEditText;
-
     private Spinner mGenderSpinner;
-
     private ImageView mImageView;
-
     private TextInputEditText mBirthDatePicker;
-
     private TextInputEditText mDetails;
+    private RadioGroup mSterilized;
+    private RadioGroup mVaccinated;
 
     Bundle extras;
 
@@ -74,10 +72,8 @@ public class EditorActivity extends AppCompatActivity {
     byte[] imageAsByteArray;
     String birthdate;
     String details;
-
-    private int ster = 0;
-    private int vacc = 0;
-    private int desp = 0;
+    int ster;
+    int vacc;
 
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
     private static String[] PERMISSIONS_STORAGE = {
@@ -120,19 +116,15 @@ public class EditorActivity extends AppCompatActivity {
             mImageView.setImageBitmap(bmp);
             mBirthDatePicker.setText(selectedPet.getBirthdate());
             mDetails.setText(selectedPet.getDetails());
+            mSterilized.check(selectedPet.getSter());
+            mVaccinated.check(selectedPet.getVacc());
 
         }
 
 
     }
 
-    /**
-     * Checks if the app has permission to write to device storage
-     *
-     * If the app does not has permission then the user will be prompted to grant permissions
-     *
-     * @param activity
-     */
+
     public static void verifyStoragePermissions(Activity activity) {
 
         int permission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.READ_EXTERNAL_STORAGE);
@@ -154,7 +146,8 @@ public class EditorActivity extends AppCompatActivity {
         mImageView = findViewById(R.id.pet_image);
         mBirthDatePicker = findViewById(R.id.edit_pet_birthdate);
         mDetails = findViewById(R.id.edit_pet_details);
-
+        mSterilized = findViewById(R.id.radio_group_ster);
+        mVaccinated = findViewById(R.id.radio_group_vacc);
 
     }
 
@@ -191,52 +184,32 @@ public class EditorActivity extends AppCompatActivity {
 
     private void setupDialog(){
 
-        DatePickerFragment newFragment = DatePickerFragment.newInstance(new DatePickerDialog.OnDateSetListener(){
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int day) {
-                final String selectedDate = day + "/" + (month + 1) + "/" + year;
-                mBirthDatePicker.setText(selectedDate);
-            }
+        DatePickerFragment newFragment = DatePickerFragment.newInstance((view, year, month, day) -> {
+            final String selectedDate = day + "/" + (month + 1) + "/" + year;
+            mBirthDatePicker.setText(selectedDate);
         });
         newFragment.show(getSupportFragmentManager(), "datePicker");
     }
 
     public void onRadioButtonClicked(View view) {
-        // Is the button now checked?
         boolean checked = ((RadioButton) view).isChecked();
 
-        // Check which radio button was clicked
         switch(view.getId()) {
             case R.id.radio_ster_yes:
                 if (checked) {
-                    ster = 1;
-                    break;
+                    ster = Pet.YES;
                 }
             case R.id.radio_ster_no:
                 if (checked) {
-                    ster = 0;
-                    break;
-                }
-            case R.id.radio_desp_yes:
-                if (checked) {
-                    desp = 1;
-                    break;
-                }
-            case R.id.radio_desp_no:
-                if (checked) {
-                    desp = 0;
-                    break;
+                    ster = Pet.NO;
                 }
             case R.id.radio_vacc_yes:
                 if (checked){
-                    vacc = 1;
-                    break;
+                    vacc = Pet.YES;
                 }
             case R.id.radio_vacc_no:
                 if (checked) {
-                    vacc = 0;
-                    break;
-                }
+                    vacc = Pet.NO;                }
         }
     }
 
@@ -258,11 +231,10 @@ public class EditorActivity extends AppCompatActivity {
             replyIntent.putExtra("Gender", mGender);
             replyIntent.putExtra("Date", birthdate);
             replyIntent.putExtra("Weight", weight);
+            replyIntent.putExtra("Details", details);
             replyIntent.putExtra("Image", imageAsByteArray);
             replyIntent.putExtra("Sterilized", ster);
             replyIntent.putExtra("Vaccinated", vacc);
-            replyIntent.putExtra("Dewormed", desp);
-
 
             setResult(RESULT_OK, replyIntent);
         }
@@ -272,13 +244,13 @@ public class EditorActivity extends AppCompatActivity {
 
     private void updatePet() {
         getValues();
-        mPetViewModel.update(new Pet(id, name, breed, mGender, birthdate, ster, vacc, desp, weight, details, imageAsByteArray));
+        mPetViewModel.update(new Pet(id, name, breed, mGender, birthdate, weight, details, imageAsByteArray, ster, vacc));
         finish();
     }
 
     private void deletePet() {
         getValues();
-        mPetViewModel.delete(new Pet(id, name, breed, mGender, birthdate, ster, vacc, desp, weight, details, imageAsByteArray));
+        mPetViewModel.delete(new Pet(id, name, breed, mGender, birthdate, weight, details, imageAsByteArray, ster, vacc));
 
         finish();
     }
@@ -296,7 +268,8 @@ public class EditorActivity extends AppCompatActivity {
         imageAsByteArray = getBytesFromBitmap(imageDrawable.getBitmap());
         details = mDetails.getText().toString();
         birthdate = mBirthDatePicker.getText().toString();
-
+        ster = mSterilized.getCheckedRadioButtonId();
+        vacc = mVaccinated.getCheckedRadioButtonId();
 
     }
 

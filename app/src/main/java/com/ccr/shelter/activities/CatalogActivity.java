@@ -110,8 +110,7 @@ public class CatalogActivity extends AppCompatActivity {
     }
 
     boolean containsName(List<Pet> list, String name){
-        for (Pet pet :
-                list) {
+        for (Pet pet : list) {
             if(pet.getName().toUpperCase().contains(name))
                 return true;
         }
@@ -137,7 +136,9 @@ public class CatalogActivity extends AppCompatActivity {
                     data.getStringExtra("Date"),
                     data.getIntExtra("Weight", 0),
                     data.getStringExtra("Details"),
-                    data.getByteArrayExtra("Image")
+                    data.getByteArrayExtra("Image"),
+                    data.getIntExtra("Sterilized", 0),
+                    data.getIntExtra("Vaccinated", 0)
                     );
 
 

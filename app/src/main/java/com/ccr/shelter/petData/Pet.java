@@ -18,27 +18,28 @@ public class Pet {
     private int gender;
     private int weight;
     private String birthdate;
-    private int sterilized;
-    private int vaccinated;
-    private int dewormed;
     private String details;
     @ColumnInfo(typeAffinity = ColumnInfo.BLOB)
     private byte[] image;
+    private int ster;
+    private int vacc;
 
 
-    public Pet(int id,@NonNull String name,@NonNull String breed, int gender, String birthdate, int sterilized, int vaccinated, int dewormed, int weight, String details, byte[] image) {
+    public Pet(int id,@NonNull String name,@NonNull String breed, int gender, String birthdate, int weight, String details, byte[] image, int ster, int vacc) {
         this.id = id;
         this.name = name;
         this.breed = breed;
         this.gender = gender;
-        this.weight = weight;
-        this.image = image;
         this.birthdate = birthdate;
-        this.sterilized = sterilized;
-        this.vaccinated = vaccinated;
-        this.dewormed = dewormed;
+        this.weight = weight;
         this.details = details;
+        this.image = image;
+        this.ster = ster;
+        this.vacc = vacc;
+
     }
+
+    //Getters
 
     public int getId() {
         return id;
@@ -66,27 +67,23 @@ public class Pet {
         return image;
     }
 
-   public String getBirthdate(){
+    public String getBirthdate(){
         return birthdate;
-    }
-
-    public int getSterilized(){
-        return sterilized;
-    }
-
-    public int getVaccinated(){
-        return vaccinated;
-    }
-
-    public int getDewormed(){
-        return dewormed;
     }
 
     public String getDetails(){
         return details;
     }
 
+    public int getSter(){
+        return ster;
+    }
 
+    public int getVacc(){
+        return vacc;
+    }
+
+    //Values
 
     public static final int UNKNOWN = 0;
     public static final int MALE = 1;

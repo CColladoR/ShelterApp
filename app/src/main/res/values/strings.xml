@@ -29,9 +29,9 @@
     <string name="desp_category">¿Desparasitado?</string>
 
 
-    <string name="errorMessageName">Los campos "Nombre", "Raza" y "Peso" no pueden estar vacíos.</string>
+    <string name="errorMessageName">Los campos Nombre, Raza y Peso no pueden estar vacíos.</string>
     <string name="yes">Sí</string>
     <string name="no">No</string>
-    <string name="dialog_delete_pet">Se marcará como \"Adoptado\" y sus datos desaparecerán de la base de datos.</string>
-    <string name="dialog_delete_pet_title">"¿Estás seguro de querer eliminar el animal? "</string>
+    <string name="dialog_delete_pet">Vas a marcar el animal como "Adoptado". Sus datos se eliminarán de la base de datos. (Esta opción no se puede deshacer)</string>
+    <string name="dialog_delete_pet_title">"¿Estás segur@? "</string>
 </resources>

@@ -10,7 +10,6 @@
         android:icon="@drawable/ic_done"
         app:showAsAction="always" />
 
-
     <item
         android:id="@+id/action_delete"
         android:title="Delete"

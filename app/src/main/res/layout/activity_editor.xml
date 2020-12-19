@@ -8,22 +8,20 @@
     tools:context=".activities.EditorActivity"
     android:fillViewport="true">
 
-<RelativeLayout
-
-    android:id="@+id/mRelativeLayout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="16dp"
-    android:clipToPadding="false">
-
+    <RelativeLayout
+        android:id="@+id/mRelativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        android:clipToPadding="false">
 
         <LinearLayout
             android:id="@+id/mLinearLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:padding="10dp"
-            android:layout_margin="2dp">
+            android:padding="16dp"
+            android:layout_margin="4dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -34,17 +32,16 @@
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/pet_image"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
                     android:onClick="onClickPickImage"
                     android:src="@drawable/img_dog"
-                    android:tooltipText="Toca la imagen para elegir una foto."
                     app:civ_border_color="@color/primary_color"
                     app:civ_border_width="2dp" />
 
                 <ImageView
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_alignBottom="@+id/pet_image"
                     android:layout_alignEnd="@+id/pet_image"
                     android:src="@drawable/ic_tooltip_photo"
@@ -62,7 +59,6 @@
                     style="@style/CategoryStyle"
                     />
 
-                <!-- Input -->
                 <LinearLayout
                     android:layout_height="wrap_content"
                     android:layout_width="0dp"
@@ -71,11 +67,9 @@
                     android:paddingEnd="4dp"
                     android:orientation="vertical">
 
-                    <!-- Name -->
                     <com.google.android.material.textfield.TextInputLayout
                         android:inputType="textCapWords"
                         android:layout_width="match_parent"
-                        app:endIconMode="clear_text"
                         android:layout_height="wrap_content"
                         android:hint="@string/hint_pet_name"
                         app:boxStrokeColor="@color/secondary_dark"
@@ -89,13 +83,11 @@
 
                     </com.google.android.material.textfield.TextInputLayout>
 
-                    <!-- Breed -->
                     <com.google.android.material.textfield.TextInputLayout
                         android:inputType="textCapWords"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/hint_pet_breed"
-                        app:endIconMode="clear_text"
                         app:boxStrokeColor="@color/secondary_dark"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
@@ -110,7 +102,6 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <!-- Gender -->
             <LinearLayout
                 android:id="@+id/container_gender"
                 android:layout_width="match_parent"
@@ -122,14 +113,12 @@
                     style="@style/CategoryStyle"
                     />
 
-                <!-- Input -->
                 <LinearLayout
                     android:layout_height="wrap_content"
                     android:layout_width="0dp"
                     android:layout_weight="2"
                     android:orientation="vertical">
 
-                    <!-- Gender spinner -->
                     <Spinner
                         android:id="@+id/spinner_gender"
                         android:layout_height="48dp"
@@ -150,7 +139,6 @@
                     style="@style/CategoryStyle"
                     />
 
-                <!-- Input -->
                 <LinearLayout
                     android:layout_height="wrap_content"
                     android:layout_width="0dp"
@@ -159,12 +147,10 @@
                     android:paddingStart="4dp"
                     android:orientation="vertical">
 
-                    <!-- BD -->
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/pet_birthdate"
                         android:inputType="date"
                         android:layout_width="match_parent"
-                        app:endIconMode="clear_text"
                         android:clickable="true"
                         android:layout_height="wrap_content"
                         android:hint="@string/hint_pet_birthdate"
@@ -175,20 +161,17 @@
                             android:id="@+id/edit_pet_birthdate"
                             android:focusableInTouchMode="false"
                             android:clickable="true"
-                            android:editable="false"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
-                    <!-- Weight -->
                     <com.google.android.material.textfield.TextInputLayout
                         app:suffixText="kg"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/hint_pet_weight"
-                        app:endIconMode="clear_text"
                         app:boxStrokeColor="@color/secondary_dark"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
@@ -204,52 +187,55 @@
 
                 </LinearLayout>
             </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
-
-        <TextView
-            android:text="@string/ster_category"
-            style="@style/CategoryStyle"
-            />
-
-        <LinearLayout
-            android:layout_height="wrap_content"
-            android:layout_width="0dp"
-            android:layout_weight="2"
-            android:paddingEnd="4dp"
-            android:paddingStart="4dp"
-            android:orientation="horizontal">
-
-            <RadioGroup
-                android:id="@+id/radioSter"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 >
-                <RadioButton android:id="@+id/radio_ster_yes"
-                    android:layout_width="wrap_content"
+
+                <TextView
+                    android:text="@string/ster_category"
+                    style="@style/CategoryStyle"
+                    />
+
+                <LinearLayout
                     android:layout_height="wrap_content"
-                    android:text="@string/yes"
-                    android:onClick="onRadioButtonClicked"/>
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:paddingEnd="4dp"
+                    android:paddingStart="4dp"
+                    android:orientation="horizontal">
 
-                <RadioButton
-                    android:id="@+id/radio_ster_no"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:checked="true"
-                    android:text="@string/no"
-                    android:onClick="onRadioButtonClicked"/>
+                    <RadioGroup
+                        android:id="@+id/radio_group_ster"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+                        <RadioButton
+                            android:id="@+id/radio_ster_yes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/yes"
+                            android:onClick="onRadioButtonClicked"
+                            />
 
-            </RadioGroup>
+                        <RadioButton
+                            android:id="@+id/radio_ster_no"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="true"
+                            android:text="@string/no"
+                            android:onClick="onRadioButtonClicked"
+                            />
+
+                    </RadioGroup>
 
 
-        </LinearLayout>
+                </LinearLayout>
 
 
-    </LinearLayout>
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -271,17 +257,18 @@
                     android:orientation="horizontal">
 
                     <RadioGroup
-                        android:id="@+id/radioVacc"
+                        android:id="@+id/radio_group_vacc"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         >
-                        <RadioButton android:id="@+id/radio_vacc_yes"
+                        <RadioButton
+                            android:id="@+id/radio_vacc_yes"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/yes"
                             android:onClick="onRadioButtonClicked"
-                        />
+                            />
 
                         <RadioButton
                             android:id="@+id/radio_vacc_no"
@@ -290,56 +277,8 @@
                             android:checked="true"
                             android:text="@string/no"
                             android:onClick="onRadioButtonClicked"
+
                             />
-                    </RadioGroup>
-
-
-                </LinearLayout>
-
-
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                >
-
-                <TextView
-                    android:text="@string/desp_category"
-                    style="@style/CategoryStyle"
-                    />
-
-                <LinearLayout
-                    android:layout_height="wrap_content"
-                    android:layout_width="0dp"
-                    android:layout_weight="2"
-                    android:paddingEnd="4dp"
-                    android:paddingStart="4dp"
-                    android:orientation="horizontal">
-
-                    <RadioGroup
-                        android:id="@+id/radioDesp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        >
-                        <RadioButton android:id="@+id/radio_desp_yes"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/yes"
-                            android:onClick="onRadioButtonClicked"/>
-
-                        <RadioButton
-                            android:id="@+id/radio_desp_no"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:checked="true"
-                            android:text="@string/no"
-                            android:onClick="onRadioButtonClicked"/>
-
-
                     </RadioGroup>
 
 
@@ -355,7 +294,6 @@
                 android:orientation="horizontal"
                 android:baselineAligned="false">
 
-                <!-- Input -->
                 <RelativeLayout
                     android:layout_height="wrap_content"
                     android:layout_width="0dp"
@@ -367,7 +305,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="150dp"
                         android:hint="@string/hint_pet_details"
-                        app:endIconMode="clear_text"
                         android:scrollbars="vertical"
                         app:boxStrokeColor="@color/secondary_dark"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
@@ -382,8 +319,8 @@
                 </RelativeLayout>
             </LinearLayout>
 
-
         </LinearLayout>
 
-</RelativeLayout>
+    </RelativeLayout>
+
 </ScrollView>

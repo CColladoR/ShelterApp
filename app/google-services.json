@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "773942797742",
+    "project_id": "shelter-70cc4",
+    "storage_bucket": "shelter-70cc4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:773942797742:android:3a45dcf1bf6475cc4f143f",
+        "android_client_info": {
+          "package_name": "com.ccr.shelter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "773942797742-13bhp6o3ve402mvku2g7seodbivof2pv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDSRiBCNBpFVC39RkfggS8HrKW0uIqCqhk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "773942797742-13bhp6o3ve402mvku2g7seodbivof2pv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
