@@ -22,6 +22,7 @@
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
         android:src="@drawable/ic_add"
+        android:contentDescription="Botón para añadir nueva mascota"
         app:backgroundTint="@color/secondary_dark"
         app:tint="@null"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -62,6 +63,7 @@
             android:layout_width="350dp"
             android:layout_height="200dp"
             android:src="@drawable/ic_imgpet"
+            android:contentDescription="Imagen de fondo"
            />
 
         <TextView

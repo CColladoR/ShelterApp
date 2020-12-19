@@ -79,7 +79,8 @@
             android:layout_marginLeft="16dp"
             android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toBottomOf="@+id/breed" />
+            app:layout_constraintTop_toBottomOf="@+id/breed"
+            android:contentDescription="Imagen de la mascota"/>
 
         <ImageView
             android:id="@+id/gender"
@@ -90,7 +91,8 @@
             android:layout_marginTop="20dp"
             app:layout_constraintStart_toEndOf="@+id/name"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@android:drawable/ic_menu_help" />
+            app:srcCompat="@android:drawable/ic_menu_help"
+            android:contentDescription="Icono de género"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

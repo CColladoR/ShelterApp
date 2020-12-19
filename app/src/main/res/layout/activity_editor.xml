@@ -11,7 +11,7 @@
     <RelativeLayout
         android:id="@+id/mRelativeLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:padding="16dp"
         android:clipToPadding="false">
 
@@ -46,6 +46,7 @@
                     android:layout_alignEnd="@+id/pet_image"
                     android:src="@drawable/ic_tooltip_photo"
                     android:onClick="onClickPickImage"
+                    android:contentDescription="Imagen de la mascota"
                     />
             </RelativeLayout>
 
