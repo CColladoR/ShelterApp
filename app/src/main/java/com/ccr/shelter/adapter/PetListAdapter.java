@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Build;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -121,15 +123,26 @@ public class PetListAdapter extends RecyclerView.Adapter<PetListAdapter.PetViewH
     public Filter getFilter() {
         return new Filter() {
 
+
+
             @Override
             protected FilterResults performFiltering(CharSequence constraint) {
                 FilterResults results = new FilterResults();
+
                 if (constraint == null || constraint.length() == 0) {
-                    results.count = allPets.size();
-                    results.values = allPets;
+                    try {
+                        results.count = allPets.size();
+                        results.values = allPets;
+                    } catch (NullPointerException npe){
+
+
+                    }
+
+
                 } else{
                     String searchStr = constraint.toString().toUpperCase();
                     List<Pet> resultsData = new ArrayList<>();
+
                     for (Pet pet :
                             allPets) {
                         if(pet.getName().toUpperCase().contains(searchStr))

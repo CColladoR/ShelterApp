@@ -137,7 +137,9 @@ public class CatalogActivity extends AppCompatActivity {
                     data.getStringExtra("Details"),
                     data.getByteArrayExtra("Image"),
                     data.getIntExtra("Sterilized", 0),
-                    data.getIntExtra("Vaccinated", 0)
+                    data.getIntExtra("Vaccinated", 0),
+                    data.getIntExtra("Adopted", 0),
+                    data.getStringExtra("Adoption Date")
                     );
 
 
@@ -147,7 +149,7 @@ public class CatalogActivity extends AppCompatActivity {
 
             Toast.makeText(
                     getApplicationContext(),
-                    "No se ha guardado",
+                    R.string.not_saved,
                     Toast.LENGTH_LONG).show();
         }
 

@@ -23,8 +23,11 @@ public class Pet {
     private int ster;
     private int vacc;
 
+    private int adopted;
+    private String adoptDate;
 
-    public Pet(int id,@NonNull String name,@NonNull String breed, int gender, String birthdate, int weight, String details, byte[] image, int ster, int vacc) {
+
+    public Pet(int id,@NonNull String name,@NonNull String breed, int gender, String birthdate, int weight, String details, byte[] image, int ster, int vacc, int adopted, String adoptDate) {
         this.id = id;
         this.name = name;
         this.breed = breed;
@@ -35,6 +38,8 @@ public class Pet {
         this.image = image;
         this.ster = ster;
         this.vacc = vacc;
+        this.adopted = adopted;
+        this.adoptDate = adoptDate;
 
     }
 
@@ -80,6 +85,14 @@ public class Pet {
 
     public int getVacc(){
         return vacc;
+    }
+
+    public int getAdopted(){
+        return adopted;
+    }
+
+    public String getAdoptDate(){
+        return adoptDate;
     }
 
     //Values

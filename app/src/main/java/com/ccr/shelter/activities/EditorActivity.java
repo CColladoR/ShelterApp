@@ -22,6 +22,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -36,6 +37,7 @@ import com.ccr.shelter.R;
 import com.ccr.shelter.dialog.DatePickerFragment;
 import com.ccr.shelter.petData.Pet;
 import com.ccr.shelter.viewmodel.PetViewModel;
+import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.io.ByteArrayOutputStream;
@@ -48,6 +50,8 @@ public class EditorActivity extends AppCompatActivity {
 
     private static int RESULT_LOAD_IMAGE = 1;
 
+
+    //Views
     private TextInputEditText mNameEditText;
     private TextInputEditText mBreedEditText;
     private TextInputEditText mWeightEditText;
@@ -57,9 +61,12 @@ public class EditorActivity extends AppCompatActivity {
     private TextInputEditText mDetails;
     private RadioGroup mSterilized;
     private RadioGroup mVaccinated;
+    private RadioGroup mAdopted;
+    private TextInputEditText mAdoptedDatePicker;
 
     Bundle extras;
 
+    //Variables
     int id;
     String name;
     private int mGender = 0;
@@ -70,7 +77,10 @@ public class EditorActivity extends AppCompatActivity {
     String details;
     int ster;
     int vacc;
+    int adopted;
+    String adoptDate;
 
+    //Permissions
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
     private static String[] PERMISSIONS_STORAGE = {
             Manifest.permission.READ_EXTERNAL_STORAGE,
@@ -87,10 +97,34 @@ public class EditorActivity extends AppCompatActivity {
         setViews();
         setupSpinner();
 
+        mAdopted.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+
+                if (checkedId == R.id.radio_adopt_yes) {
+                    mAdoptedDatePicker.setVisibility(View.VISIBLE);
+                    findViewById(R.id.pet_adopted_date).setVisibility(View.VISIBLE);
+                } else if (checkedId == R.id.radio_adopt_no) {
+                    mAdoptedDatePicker.setVisibility(View.GONE);
+                    findViewById(R.id.pet_adopted_date).setVisibility(View.GONE);
+
+                }
+            }
+        });
+
+        //Listeners
+
         mBirthDatePicker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setupDialog();
+                setupDialogBirth();
+            }
+        });
+
+        mAdoptedDatePicker.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setupDialogAdopt();
             }
         });
 
@@ -114,10 +148,10 @@ public class EditorActivity extends AppCompatActivity {
             mDetails.setText(selectedPet.getDetails());
             mSterilized.check(selectedPet.getSter());
             mVaccinated.check(selectedPet.getVacc());
+            mAdopted.check(selectedPet.getAdopted());
+            mAdoptedDatePicker.setText(selectedPet.getAdoptDate());
 
         }
-
-
     }
 
 
@@ -144,6 +178,9 @@ public class EditorActivity extends AppCompatActivity {
         mDetails = findViewById(R.id.edit_pet_details);
         mSterilized = findViewById(R.id.radio_group_ster);
         mVaccinated = findViewById(R.id.radio_group_vacc);
+        mAdopted = findViewById(R.id.radio_group_adopted);
+        mAdoptedDatePicker = findViewById(R.id.edit_pet_adopted_date);
+
 
     }
 
@@ -178,7 +215,7 @@ public class EditorActivity extends AppCompatActivity {
         });
     }
 
-    private void setupDialog(){
+    private void setupDialogBirth(){
 
         DatePickerFragment newFragment = DatePickerFragment.newInstance((view, year, month, day) -> {
             final String selectedDate = day + "/" + (month + 1) + "/" + year;
@@ -187,6 +224,18 @@ public class EditorActivity extends AppCompatActivity {
         });
         newFragment.show(getSupportFragmentManager(), "datePicker");
     }
+
+
+    private void setupDialogAdopt(){
+
+        DatePickerFragment newFragment = DatePickerFragment.newInstance((view, year, month, day) -> {
+            final String selectedDate = day + "/" + (month + 1) + "/" + year;
+            mAdoptedDatePicker.setText(selectedDate);
+
+        });
+        newFragment.show(getSupportFragmentManager(), "datePicker");
+    }
+
 
     public void onRadioButtonClicked(View view) {
         boolean checked = ((RadioButton) view).isChecked();
@@ -210,8 +259,17 @@ public class EditorActivity extends AppCompatActivity {
                 if (checked) {
                     vacc = Pet.NO;
                 }
+            case R.id.radio_adopt_yes:
+                if (checked){
+                    vacc = Pet.YES;
+                }
+            case R.id.radio_adopt_no:
+                if (checked) {
+                    vacc = Pet.NO;
+                }
         }
     }
+
 
     private void insertPet() {
 
@@ -219,9 +277,9 @@ public class EditorActivity extends AppCompatActivity {
 
         Intent replyIntent = new Intent();
 
-        if ((TextUtils.isEmpty(mNameEditText.getText())) || (TextUtils.isEmpty(mBreedEditText.getText())) || (TextUtils.isEmpty(mWeightEditText.getText()))) {
-            Toast toastEmptyName = Toast.makeText(this, R.string.errorMessageName, Toast.LENGTH_SHORT);
-            toastEmptyName.show();
+        if ((TextUtils.isEmpty(mNameEditText.getText()))
+                || (TextUtils.isEmpty(mBreedEditText.getText()))
+                || (TextUtils.isEmpty(mWeightEditText.getText()))) {
             setResult(RESULT_CANCELED, replyIntent);
 
         } else {
@@ -235,6 +293,8 @@ public class EditorActivity extends AppCompatActivity {
             replyIntent.putExtra("Image", imageAsByteArray);
             replyIntent.putExtra("Sterilized", ster);
             replyIntent.putExtra("Vaccinated", vacc);
+            replyIntent.putExtra("Adopted", adopted);
+            replyIntent.putExtra("Adoption Date", adoptDate);
 
             setResult(RESULT_OK, replyIntent);
         }
@@ -244,14 +304,13 @@ public class EditorActivity extends AppCompatActivity {
 
     private void updatePet() {
         getValues();
-        mPetViewModel.update(new Pet(id, name, breed, mGender, birthdate, weight, details, imageAsByteArray, ster, vacc));
+        mPetViewModel.update(new Pet(id, name, breed, mGender, birthdate, weight, details, imageAsByteArray, ster, vacc, adopted, adoptDate));
         finish();
     }
 
     private void deletePet() {
         getValues();
-        mPetViewModel.delete(new Pet(id, name, breed, mGender, birthdate, weight, details, imageAsByteArray, ster, vacc));
-
+        mPetViewModel.update(new Pet(id, name, breed, mGender, birthdate, weight, details, imageAsByteArray, ster, vacc, adopted, adoptDate));
         finish();
     }
 
@@ -270,6 +329,8 @@ public class EditorActivity extends AppCompatActivity {
         birthdate = mBirthDatePicker.getText().toString();
         ster = mSterilized.getCheckedRadioButtonId();
         vacc = mVaccinated.getCheckedRadioButtonId();
+        adopted = mAdopted.getCheckedRadioButtonId();
+        adoptDate = mAdoptedDatePicker.getText().toString();
 
     }
 
@@ -329,7 +390,7 @@ public class EditorActivity extends AppCompatActivity {
 
     public byte[] getBytesFromBitmap(Bitmap bitmap) {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 25, stream);
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 10, stream);
         return stream.toByteArray();
     }
 
