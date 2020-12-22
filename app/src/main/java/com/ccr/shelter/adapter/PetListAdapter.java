@@ -36,6 +36,8 @@ public class PetListAdapter extends RecyclerView.Adapter<PetListAdapter.PetViewH
         private final ImageView genderView;
         private final TextView weightView;
         private final CircleImageView imageView;
+        private final ImageView adoptedView;
+
 
         private PetViewHolder(View itemView) {
             super(itemView);
@@ -45,12 +47,13 @@ public class PetListAdapter extends RecyclerView.Adapter<PetListAdapter.PetViewH
             genderView = itemView.findViewById(R.id.gender);
             weightView = itemView.findViewById(R.id.weight);
             imageView = itemView.findViewById(R.id.image);
-
+            adoptedView = itemView.findViewById(R.id.image_adopted);
         }
 
         public String getName() {
             return nameView.getText().toString();
         }
+
 
     }
 
@@ -81,8 +84,6 @@ public class PetListAdapter extends RecyclerView.Adapter<PetListAdapter.PetViewH
             Bitmap bmp = BitmapFactory.decodeByteArray(current.getImage(), 0, current.getImage().length);
             holder.imageView.setImageBitmap(bmp);
             holder.imageView.setClipToOutline(true);
-
-
             holder.itemView.setOnClickListener(view -> {
                 Intent intent = new Intent(view.getContext(), EditorActivity.class);
                 intent.putExtra("Id",current.getId());
@@ -123,8 +124,6 @@ public class PetListAdapter extends RecyclerView.Adapter<PetListAdapter.PetViewH
     public Filter getFilter() {
         return new Filter() {
 
-
-
             @Override
             protected FilterResults performFiltering(CharSequence constraint) {
                 FilterResults results = new FilterResults();
@@ -135,9 +134,7 @@ public class PetListAdapter extends RecyclerView.Adapter<PetListAdapter.PetViewH
                         results.values = allPets;
                     } catch (NullPointerException npe){
 
-
                     }
-
 
                 } else{
                     String searchStr = constraint.toString().toUpperCase();

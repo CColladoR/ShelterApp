@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="150dp"
     android:orientation="vertical"
@@ -93,6 +94,18 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@android:drawable/ic_menu_help"
             android:contentDescription="Icono de género"/>
+
+        <ImageView
+            android:id="@+id/image_adopted"
+            android:visibility="gone"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:layout_marginEnd="4dp"
+            android:src="@drawable/ic_adopted"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/name"
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

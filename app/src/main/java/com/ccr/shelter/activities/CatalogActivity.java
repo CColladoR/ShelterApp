@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.Toast;
 
@@ -66,6 +67,7 @@ public class CatalogActivity extends AppCompatActivity {
         mShelterEmpty = findViewById(R.id.empty_shelter);
         mSearchView = findViewById(R.id.searchView);
         recyclerView = findViewById(R.id.recyclerview);
+
 
 
         FloatingActionButton fab = findViewById(R.id.fab);

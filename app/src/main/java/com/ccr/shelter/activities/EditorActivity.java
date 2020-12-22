@@ -104,6 +104,7 @@ public class EditorActivity extends AppCompatActivity {
                 if (checkedId == R.id.radio_adopt_yes) {
                     mAdoptedDatePicker.setVisibility(View.VISIBLE);
                     findViewById(R.id.pet_adopted_date).setVisibility(View.VISIBLE);
+
                 } else if (checkedId == R.id.radio_adopt_no) {
                     mAdoptedDatePicker.setVisibility(View.GONE);
                     findViewById(R.id.pet_adopted_date).setVisibility(View.GONE);
@@ -261,11 +262,11 @@ public class EditorActivity extends AppCompatActivity {
                 }
             case R.id.radio_adopt_yes:
                 if (checked){
-                    vacc = Pet.YES;
+                    adopted = Pet.YES;
                 }
             case R.id.radio_adopt_no:
                 if (checked) {
-                    vacc = Pet.NO;
+                    adopted = Pet.NO;
                 }
         }
     }
@@ -310,7 +311,7 @@ public class EditorActivity extends AppCompatActivity {
 
     private void deletePet() {
         getValues();
-        mPetViewModel.update(new Pet(id, name, breed, mGender, birthdate, weight, details, imageAsByteArray, ster, vacc, adopted, adoptDate));
+        mPetViewModel.delete(new Pet(id, name, breed, mGender, birthdate, weight, details, imageAsByteArray, ster, vacc, adopted, adoptDate));
         finish();
     }
 
