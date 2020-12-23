@@ -80,6 +80,9 @@ public class EditorActivity extends AppCompatActivity {
     int vacc;
     int adopted;
     String adoptDate;
+    String sterValue;
+    String vaccValue;
+    String adoptValue;
 
     //Permissions
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
@@ -291,6 +294,9 @@ public class EditorActivity extends AppCompatActivity {
             replyIntent.putExtra("Vaccinated", vacc);
             replyIntent.putExtra("Adopted", adopted);
             replyIntent.putExtra("Adoption Date", adoptDate);
+            replyIntent.putExtra("Sterilized Value", sterValue);
+            replyIntent.putExtra("Vaccinated Value", vaccValue);
+            replyIntent.putExtra("Adopted Value", adoptValue);
 
             setResult(RESULT_OK, replyIntent);
         }
@@ -300,13 +306,17 @@ public class EditorActivity extends AppCompatActivity {
 
     private void updatePet() {
         getValues();
-        mPetViewModel.update(new Pet(id, name, breed, mGender, birthdate, weight, details, imageAsByteArray, ster, vacc, adopted, adoptDate));
+        //mPetViewModel.update(new Pet(id, name, breed, mGender, birthdate, weight, details, imageAsByteArray, ster, vacc, adopted, adoptDate));
+        mPetViewModel.update(new Pet(id, name, breed, mGender, birthdate, weight, details, imageAsByteArray, ster, vacc, adopted, adoptDate, sterValue, vaccValue, adoptValue));
+
         finish();
     }
 
     private void deletePet() {
         getValues();
-        mPetViewModel.delete(new Pet(id, name, breed, mGender, birthdate, weight, details, imageAsByteArray, ster, vacc, adopted, adoptDate));
+       // mPetViewModel.delete(new Pet(id, name, breed, mGender, birthdate, weight, details, imageAsByteArray, ster, vacc, adopted, adoptDate));
+        mPetViewModel.delete(new Pet(id, name, breed, mGender, birthdate, weight, details, imageAsByteArray, ster, vacc, adopted, adoptDate, sterValue, vaccValue, adoptValue));
+
         finish();
     }
 
@@ -327,6 +337,14 @@ public class EditorActivity extends AppCompatActivity {
         vacc = mVaccinated.getCheckedRadioButtonId();
         adopted = mAdopted.getCheckedRadioButtonId();
         adoptDate = mAdoptedDatePicker.getText().toString();
+        //
+        RadioButton rbSter = findViewById(ster);
+        RadioButton rbVacc = findViewById(vacc);
+        RadioButton rbAdopt = findViewById(adopted);
+
+        sterValue = rbSter.getText().toString();
+        vaccValue = rbVacc.getText().toString();
+        adoptValue = rbAdopt.getText().toString();
 
     }
 

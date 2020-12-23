@@ -143,7 +143,10 @@ public class CatalogActivity extends AppCompatActivity {
                     data.getIntExtra("Sterilized", 0),
                     data.getIntExtra("Vaccinated", 0),
                     data.getIntExtra("Adopted", 0),
-                    data.getStringExtra("Adoption Date")
+                    data.getStringExtra("Adoption Date"),
+                    data.getStringExtra("Sterilized Value"),
+                    data.getStringExtra("Vaccinated Value"),
+                    data.getStringExtra("Adopted Value")
                     );
 
 
