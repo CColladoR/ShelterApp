@@ -326,7 +326,6 @@ public class EditorActivity extends AppCompatActivity {
         ster = mSterilized.getCheckedRadioButtonId();
         vacc = mVaccinated.getCheckedRadioButtonId();
         adopted = mAdopted.getCheckedRadioButtonId();
-        //Log.d("======Radio Button ID========", Integer.toString(mAdopted.getCheckedRadioButtonId()));
         adoptDate = mAdoptedDatePicker.getText().toString();
 
     }
