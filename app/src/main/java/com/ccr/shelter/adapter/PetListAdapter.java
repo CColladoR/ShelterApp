@@ -9,6 +9,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
@@ -54,7 +56,6 @@ public class PetListAdapter extends RecyclerView.Adapter<PetListAdapter.PetViewH
             return nameView.getText().toString();
         }
 
-
     }
 
     private final LayoutInflater mInflater;
@@ -81,9 +82,11 @@ public class PetListAdapter extends RecyclerView.Adapter<PetListAdapter.PetViewH
             holder.breedView.setText(current.getBreed());
             holder.genderView.setImageResource(genderSelecting(current.getGender()));
             holder.weightView.setText(String.valueOf(current.getWeight()));
+            holder.adoptedView.setImageResource(isAdopted(current.getAdopted()));
             Bitmap bmp = BitmapFactory.decodeByteArray(current.getImage(), 0, current.getImage().length);
             holder.imageView.setImageBitmap(bmp);
             holder.imageView.setClipToOutline(true);
+
             holder.itemView.setOnClickListener(view -> {
                 Intent intent = new Intent(view.getContext(), EditorActivity.class);
                 intent.putExtra("Id",current.getId());
@@ -119,6 +122,15 @@ public class PetListAdapter extends RecyclerView.Adapter<PetListAdapter.PetViewH
         }
     }
 
+    private int isAdopted(int adopted) {
+        switch (adopted){
+            case 2131362104:
+                return R.drawable.ic_adopted;
+            default:
+                return 0;
+        }
+    }
+
 
     @Override
     public Filter getFilter() {
@@ -149,7 +161,6 @@ public class PetListAdapter extends RecyclerView.Adapter<PetListAdapter.PetViewH
                     results.values = resultsData;
                 }
                 return results;
-
             }
 
             @Override
@@ -159,7 +170,6 @@ public class PetListAdapter extends RecyclerView.Adapter<PetListAdapter.PetViewH
             }
         };
     }
-
 }
 
 

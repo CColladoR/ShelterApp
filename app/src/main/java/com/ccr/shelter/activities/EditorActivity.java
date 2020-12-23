@@ -17,6 +17,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -155,7 +156,6 @@ public class EditorActivity extends AppCompatActivity {
         }
     }
 
-
     public static void verifyStoragePermissions(Activity activity) {
 
         int permission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.READ_EXTERNAL_STORAGE);
@@ -181,8 +181,6 @@ public class EditorActivity extends AppCompatActivity {
         mVaccinated = findViewById(R.id.radio_group_vacc);
         mAdopted = findViewById(R.id.radio_group_adopted);
         mAdoptedDatePicker = findViewById(R.id.edit_pet_adopted_date);
-
-
     }
 
     private void setupSpinner() {
@@ -226,7 +224,6 @@ public class EditorActivity extends AppCompatActivity {
         newFragment.show(getSupportFragmentManager(), "datePicker");
     }
 
-
     private void setupDialogAdopt(){
 
         DatePickerFragment newFragment = DatePickerFragment.newInstance((view, year, month, day) -> {
@@ -236,7 +233,6 @@ public class EditorActivity extends AppCompatActivity {
         });
         newFragment.show(getSupportFragmentManager(), "datePicker");
     }
-
 
     public void onRadioButtonClicked(View view) {
         boolean checked = ((RadioButton) view).isChecked();
@@ -284,7 +280,6 @@ public class EditorActivity extends AppCompatActivity {
             setResult(RESULT_CANCELED, replyIntent);
 
         } else {
-
             replyIntent.putExtra("Name", name);
             replyIntent.putExtra("Breed", breed);
             replyIntent.putExtra("Gender", mGender);
@@ -331,6 +326,7 @@ public class EditorActivity extends AppCompatActivity {
         ster = mSterilized.getCheckedRadioButtonId();
         vacc = mVaccinated.getCheckedRadioButtonId();
         adopted = mAdopted.getCheckedRadioButtonId();
+        //Log.d("======Radio Button ID========", Integer.toString(mAdopted.getCheckedRadioButtonId()));
         adoptDate = mAdoptedDatePicker.getText().toString();
 
     }

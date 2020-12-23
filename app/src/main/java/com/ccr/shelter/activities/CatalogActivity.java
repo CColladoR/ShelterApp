@@ -46,6 +46,8 @@ public class CatalogActivity extends AppCompatActivity {
         mAdapter = new PetListAdapter(this);
         recyclerView.setAdapter(mAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.scheduleLayoutAnimation();
+
 
         mPetViewModel = new ViewModelProvider(this).get(PetViewModel.class);
         mPetViewModel.getAllPets().observe(this, pets -> {

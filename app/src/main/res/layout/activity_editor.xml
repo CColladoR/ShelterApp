@@ -6,14 +6,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".activities.EditorActivity"
-    android:fillViewport="true">
+    android:fillViewport="true"
+    >
 
     <RelativeLayout
         android:id="@+id/mRelativeLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="16dp"
-        android:clipToPadding="false">
+        android:clipToPadding="false"
+        >
 
         <LinearLayout
             android:id="@+id/mLinearLayout"
@@ -21,7 +23,9 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:padding="16dp"
-            android:layout_margin="4dp">
+            android:layout_margin="4dp"
+            android:animateLayoutChanges="true"
+            >
 
             <RelativeLayout
                 android:layout_width="match_parent"
