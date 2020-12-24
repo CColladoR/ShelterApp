@@ -2,7 +2,7 @@
 
 ![image](https://i.imgur.com/sPnJf2m.png)
 
-##Descripción del proyecto
+## Descripción del proyecto
 
 Shelter es una aplicación destinada a ser utilizada por asociaciones protectoras de animales y refugios.
 
@@ -15,4 +15,8 @@ Una vez el animal haya sido adoptado, será posible añadir una fecha de adopci�
 ![image](https://i.imgur.com/cXlZRXv.png) 
 
 _Pantalla de inicio de la aplicación_
+
+****
+
+
 
