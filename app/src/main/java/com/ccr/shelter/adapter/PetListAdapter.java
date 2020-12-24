@@ -82,7 +82,7 @@ public class PetListAdapter extends RecyclerView.Adapter<PetListAdapter.PetViewH
             holder.breedView.setText(current.getBreed());
             holder.genderView.setImageResource(genderSelecting(current.getGender()));
             holder.weightView.setText(String.valueOf(current.getWeight()));
-            holder.adoptedView.setImageResource(isAdopted(current.getAdopted()));
+            holder.adoptedView.setImageResource(isAdopted(current.getAdoptValue()));
             Bitmap bmp = BitmapFactory.decodeByteArray(current.getImage(), 0, current.getImage().length);
             holder.imageView.setImageBitmap(bmp);
             holder.imageView.setClipToOutline(true);
@@ -122,9 +122,9 @@ public class PetListAdapter extends RecyclerView.Adapter<PetListAdapter.PetViewH
         }
     }
 
-    private int isAdopted(int adopted) {
+    private int isAdopted(String adopted) {
         switch (adopted){
-            case 2131362104:
+            case "Sí":
                 return R.drawable.ic_adopted;
             default:
                 return 0;
