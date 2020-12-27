@@ -48,7 +48,6 @@ public class CatalogActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.scheduleLayoutAnimation();
 
-
         mPetViewModel = new ViewModelProvider(this).get(PetViewModel.class);
         mPetViewModel.getAllPets().observe(this, pets -> {
 
@@ -69,7 +68,6 @@ public class CatalogActivity extends AppCompatActivity {
         mShelterEmpty = findViewById(R.id.empty_shelter);
         mSearchView = findViewById(R.id.searchView);
         recyclerView = findViewById(R.id.recyclerview);
-
 
 
         FloatingActionButton fab = findViewById(R.id.fab);

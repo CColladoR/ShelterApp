@@ -35,7 +35,6 @@ public abstract class PetDB extends RoomDatabase {
         return INSTANCE;
     }
 
-
     private static RoomDatabase.Callback sRoomDatabaseCallback = new RoomDatabase.Callback() {
         @Override
         public void onOpen(@NonNull SupportSQLiteDatabase db) {

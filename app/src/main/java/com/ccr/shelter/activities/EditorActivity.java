@@ -118,7 +118,6 @@ public class EditorActivity extends AppCompatActivity {
         });
 
         //Listeners
-
         mBirthDatePicker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -306,7 +305,6 @@ public class EditorActivity extends AppCompatActivity {
 
     private void updatePet() {
         getValues();
-        //mPetViewModel.update(new Pet(id, name, breed, mGender, birthdate, weight, details, imageAsByteArray, ster, vacc, adopted, adoptDate));
         mPetViewModel.update(new Pet(id, name, breed, mGender, birthdate, weight, details, imageAsByteArray, ster, vacc, adopted, adoptDate, sterValue, vaccValue, adoptValue));
 
         finish();
@@ -314,7 +312,6 @@ public class EditorActivity extends AppCompatActivity {
 
     private void deletePet() {
         getValues();
-       // mPetViewModel.delete(new Pet(id, name, breed, mGender, birthdate, weight, details, imageAsByteArray, ster, vacc, adopted, adoptDate));
         mPetViewModel.delete(new Pet(id, name, breed, mGender, birthdate, weight, details, imageAsByteArray, ster, vacc, adopted, adoptDate, sterValue, vaccValue, adoptValue));
 
         finish();
@@ -337,7 +334,6 @@ public class EditorActivity extends AppCompatActivity {
         vacc = mVaccinated.getCheckedRadioButtonId();
         adopted = mAdopted.getCheckedRadioButtonId();
         adoptDate = mAdoptedDatePicker.getText().toString();
-        //
         RadioButton rbSter = findViewById(ster);
         RadioButton rbVacc = findViewById(vacc);
         RadioButton rbAdopt = findViewById(adopted);
