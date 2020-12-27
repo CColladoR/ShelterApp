@@ -337,7 +337,6 @@ public class EditorActivity extends AppCompatActivity {
         RadioButton rbSter = findViewById(ster);
         RadioButton rbVacc = findViewById(vacc);
         RadioButton rbAdopt = findViewById(adopted);
-
         sterValue = rbSter.getText().toString();
         vaccValue = rbVacc.getText().toString();
         adoptValue = rbAdopt.getText().toString();

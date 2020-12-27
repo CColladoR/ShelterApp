@@ -25,7 +25,13 @@ import com.ccr.shelter.R;
 import com.ccr.shelter.activities.EditorActivity;
 import com.ccr.shelter.petData.Pet;
 
+import org.w3c.dom.Text;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -35,6 +41,7 @@ public class PetListAdapter extends RecyclerView.Adapter<PetListAdapter.PetViewH
     class PetViewHolder extends RecyclerView.ViewHolder {
         private final TextView nameView;
         private final TextView breedView;
+        private final TextView ageView;
         private final ImageView genderView;
         private final TextView weightView;
         private final CircleImageView imageView;
@@ -48,6 +55,7 @@ public class PetListAdapter extends RecyclerView.Adapter<PetListAdapter.PetViewH
             breedView = itemView.findViewById(R.id.breed);
             genderView = itemView.findViewById(R.id.gender);
             weightView = itemView.findViewById(R.id.weight);
+            ageView = itemView.findViewById(R.id.age);
             imageView = itemView.findViewById(R.id.image);
             adoptedView = itemView.findViewById(R.id.image_adopted);
         }
@@ -77,6 +85,9 @@ public class PetListAdapter extends RecyclerView.Adapter<PetListAdapter.PetViewH
     @Override
     public void onBindViewHolder(@NonNull PetListAdapter.PetViewHolder holder, int position) {
         if (mPets != null) {
+
+
+
             Pet current = mPets.get(position);
             holder.nameView.setText(current.getName());
             holder.breedView.setText(current.getBreed());
@@ -86,6 +97,22 @@ public class PetListAdapter extends RecyclerView.Adapter<PetListAdapter.PetViewH
             Bitmap bmp = BitmapFactory.decodeByteArray(current.getImage(), 0, current.getImage().length);
             holder.imageView.setImageBitmap(bmp);
             holder.imageView.setClipToOutline(true);
+
+            try {
+                Date date1=new SimpleDateFormat("dd/MM/yyyy").parse(current.getBirthdate());;
+                Date date2 = Calendar.getInstance().getTime();
+                long yearsOldDate = (date2.getTime() - date1.getTime()) / 86400000 / 365;
+                if (yearsOldDate != 0) {
+                    holder.ageView.setText(yearsOldDate + " años");
+                }
+                else {
+                    holder.ageView.setVisibility(View.GONE);
+                }
+
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
 
             holder.itemView.setOnClickListener(view -> {
                 Intent intent = new Intent(view.getContext(), EditorActivity.class);
