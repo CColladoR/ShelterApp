@@ -51,6 +51,17 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:id="@+id/age"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/rubik"
+            android:text="@string/age"
+            app:layout_constraintStart_toEndOf="@+id/weight"
+            app:layout_constraintTop_toBottomOf="@+id/breed" />
+
+        <TextView
             android:id="@+id/breed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -66,7 +77,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="10dp"
             android:fontFamily="@font/rubik"
             android:text="@string/weight"
             app:layout_constraintStart_toEndOf="@+id/imageView2"

@@ -34,4 +34,5 @@
     <string name="hint_date">Fecha</string>
     <string name="hint_adopted_date">Fecha de la adopción.</string>
     <string name="not_saved">No se ha guardado. Asegúrate de que los campos "Nombre", "Raza" y "Peso" no están vacíos.</string>
+    <string name="age">Edad</string>
 </resources>

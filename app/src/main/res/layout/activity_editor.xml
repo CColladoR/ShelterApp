@@ -317,7 +317,7 @@
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/edit_pet_details"
-                            android:inputType="textLongMessage|textCapSentences"
+                            android:inputType="textMultiLine"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             />
