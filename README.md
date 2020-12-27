@@ -2,6 +2,10 @@
 
 ![image](https://i.imgur.com/sPnJf2m.png)
 
+[descarga![image]()]()
+
+[![name](https://play.google.com/intl/en_us/badges/static/images/badges/es_badge_web_generic.png)](https://play.google.com/store/apps/details?id=com.ccr.shelter)
+
 ## Descripción del proyecto
 
 Shelter es una aplicación destinada a ser utilizada por asociaciones protectoras de animales y refugios.
