@@ -2,7 +2,7 @@
 
 ![image](https://i.imgur.com/sPnJf2m.png)
 
-[![name](https://i.imgur.com/eTZly6n.png)](https://play.google.com/store/apps/details?id=com.ccr.shelter)
+<p align="center">[![name](https://i.imgur.com/eTZly6n.png)](https://play.google.com/store/apps/details?id=com.ccr.shelter)</p>
 
 ## Descripción del proyecto
 
