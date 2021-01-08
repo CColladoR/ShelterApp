@@ -16,7 +16,7 @@ Una vez el animal haya sido adoptado, será posible añadir una fecha de adopci�
 
 ****
 
-La aplicación está desarrollada en base al patrón de arquitectura MVVM, de modo que la mayor parte de la interfaz de usuario se encuentra desacoplada de la lógica de la aplicación.
+La aplicación está desarrollada en base al patrón de arquitectura MVVM, de modo que la interfaz de usuario se encuentra desacoplada de la lógica de la aplicación.
 
 Su diseño está elaborado a través de los elementos disponibles en la última versión de Material Components.
 
