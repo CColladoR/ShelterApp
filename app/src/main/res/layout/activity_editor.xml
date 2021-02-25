@@ -77,7 +77,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/hint_pet_name"
-                        app:boxStrokeColor="@color/secondary_dark"
+                        app:boxStrokeColor="@color/primary_color"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                         <com.google.android.material.textfield.TextInputEditText
@@ -93,7 +93,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/hint_pet_breed"
-                        app:boxStrokeColor="@color/secondary_dark"
+                        app:boxStrokeColor="@color/primary_color"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                         <com.google.android.material.textfield.TextInputEditText
@@ -159,7 +159,7 @@
                         android:clickable="true"
                         android:layout_height="wrap_content"
                         android:hint="@string/hint_pet_birthdate"
-                        app:boxStrokeColor="@color/secondary_dark"
+                        app:boxStrokeColor="@color/primary_color"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                         <com.google.android.material.textfield.TextInputEditText
@@ -177,7 +177,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/hint_pet_weight"
-                        app:boxStrokeColor="@color/secondary_dark"
+                        app:boxStrokeColor="@color/primary_color"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                         <com.google.android.material.textfield.TextInputEditText
@@ -312,7 +312,7 @@
                         android:layout_height="150dp"
                         android:hint="@string/hint_pet_details"
                         android:scrollbars="vertical"
-                        app:boxStrokeColor="@color/secondary_dark"
+                        app:boxStrokeColor="@color/primary_color"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                         <com.google.android.material.textfield.TextInputEditText
@@ -380,7 +380,7 @@
                         android:visibility="gone"
                         android:layout_height="wrap_content"
                         android:hint="@string/hint_adopted_date"
-                        app:boxStrokeColor="@color/secondary_dark"
+                        app:boxStrokeColor="@color/primary_color"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                         <com.google.android.material.textfield.TextInputEditText
