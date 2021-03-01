@@ -9,6 +9,8 @@
     android:fillViewport="true"
     >
 
+    <!-- TODO: Update form layout and colors -->
+
     <RelativeLayout
         android:id="@+id/mRelativeLayout"
         android:layout_width="match_parent"
@@ -78,6 +80,7 @@
                         android:layout_height="wrap_content"
                         android:hint="@string/hint_pet_name"
                         app:boxStrokeColor="@color/primary_color"
+
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                         <com.google.android.material.textfield.TextInputEditText
@@ -370,7 +373,6 @@
 
                             />
                     </RadioGroup>
-
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/pet_adopted_date"
