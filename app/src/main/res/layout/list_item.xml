@@ -7,6 +7,7 @@
     android:orientation="vertical"
     android:padding="16dp"
     android:background="@drawable/item_background"
+    android:elevation="2dp"
     android:layout_margin="8dp"
     android:clickable="true"
     android:focusable="true"
@@ -28,7 +29,8 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/item_bg"
             android:scaleType="centerCrop"
-            android:background="@drawable/item_bg"/>
+            android:background="@drawable/item_bg"
+            android:elevation="4dp"/>
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline"
@@ -89,7 +91,7 @@
             android:layout_height="19dp"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="4dp"
             app:layout_constraintStart_toStartOf="@+id/guideline"
             app:layout_constraintTop_toBottomOf="@+id/breed"
             android:contentDescription="Imagen de la mascota"/>
