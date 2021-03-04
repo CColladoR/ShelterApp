@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activities.CatalogActivity"
-    android:animateLayoutChanges="true">
+    android:animateLayoutChanges="true"
+    android:theme="@style/Theme.Shelter">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview"
@@ -39,7 +40,7 @@
         android:id="@+id/searchView"
         android:layout_width="0dp"
         android:queryBackground="@null"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
         android:layout_marginTop="16dp"

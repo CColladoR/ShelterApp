@@ -28,6 +28,7 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -64,6 +65,7 @@ public class EditorActivity extends AppCompatActivity {
     private RadioGroup mVaccinated;
     private RadioGroup mAdopted;
     private TextInputEditText mAdoptedDatePicker;
+    private TextView mPetTitle;
 
     Bundle extras;
 
@@ -83,6 +85,7 @@ public class EditorActivity extends AppCompatActivity {
     String sterValue;
     String vaccValue;
     String adoptValue;
+    String petTitle;
 
     //Permissions
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
@@ -94,6 +97,7 @@ public class EditorActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(R.style.Theme_Shelter);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editor);
 
@@ -154,7 +158,9 @@ public class EditorActivity extends AppCompatActivity {
             mVaccinated.check(selectedPet.getVacc());
             mAdopted.check(selectedPet.getAdopted());
             mAdoptedDatePicker.setText(selectedPet.getAdoptDate());
-
+            if (!selectedPet.getName().isEmpty()){
+                mPetTitle.setText(selectedPet.getName());
+            }
         }
     }
 
@@ -183,6 +189,7 @@ public class EditorActivity extends AppCompatActivity {
         mVaccinated = findViewById(R.id.radio_group_vacc);
         mAdopted = findViewById(R.id.radio_group_adopted);
         mAdoptedDatePicker = findViewById(R.id.edit_pet_adopted_date);
+        mPetTitle = findViewById(R.id.titleAnimal);
     }
 
     private void setupSpinner() {

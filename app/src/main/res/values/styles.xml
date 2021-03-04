@@ -6,7 +6,6 @@
         <item name="colorPrimaryDark">@color/primary_color_dark</item>
         <item name="colorAccent">@color/secondary_dark</item>
         <item name="android:fontFamily">@font/rubik</item>
-        <item name="actionBarItemBackground">@android:color/white</item>
     </style>
 
     <!-- Category style -->
