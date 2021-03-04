@@ -94,6 +94,7 @@ public class EditorActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(R.style.Theme_Shelter);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editor);
 
