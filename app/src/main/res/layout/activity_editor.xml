@@ -44,15 +44,7 @@
                     app:civ_border_color="@color/primary_color"
                     app:civ_border_width="2dp"/>
 
-               <!-- <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_alignBottom="@+id/pet_image"
-                    android:layout_alignEnd="@+id/pet_image"
-                    android:src="@drawable/ic_tooltip_photo"
-                    android:onClick="onClickPickImage"
-                    android:contentDescription="Imagen de la mascota"
-                    />-->
+              
             </RelativeLayout>
 
             <TextView
