@@ -35,4 +35,7 @@
     <string name="hint_adopted_date">Fecha de la adopción.</string>
     <string name="not_saved">No se ha guardado. Asegúrate de que los campos "Nombre", "Raza" y "Peso" no están vacíos.</string>
     <string name="age">Edad</string>
+    <string name="hint_pet_name_title">Introduce los datos del animal</string>
+    <string name="zero">0</string>
+    <string name="default_date">01/01/2010</string>
 </resources>
