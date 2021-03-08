@@ -3,7 +3,10 @@
     <!-- Editor style -->
     <style name="EditorTheme" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <item name="colorPrimary">@color/primary_color</item>
+        <item name="colorPrimaryVariant">@color/white</item>
+        <item name="colorOnPrimary">@color/black</item>
         <item name="colorPrimaryDark">@color/primary_color_dark</item>
+        
         <item name="colorAccent">@color/secondary_dark</item>
         <item name="android:fontFamily">@font/rubik</item>
     </style>

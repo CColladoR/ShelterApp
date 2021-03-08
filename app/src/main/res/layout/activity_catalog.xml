@@ -7,7 +7,9 @@
     android:layout_height="match_parent"
     tools:context=".activities.CatalogActivity"
     android:animateLayoutChanges="true"
-    android:theme="@style/Theme.Shelter">
+    android:theme="@style/Theme.Shelter"
+    android:background="@color/greyBackground"
+    >
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview"

@@ -8,6 +8,7 @@
     tools:context=".activities.EditorActivity"
     android:fillViewport="true"
     android:theme="@style/Theme.Shelter"
+    android:background="@color/greyBackground"
     >
 
     <RelativeLayout
@@ -44,7 +45,7 @@
                     app:civ_border_color="@color/primary_color"
                     app:civ_border_width="2dp"/>
 
-              
+
             </RelativeLayout>
 
             <TextView

@@ -2,21 +2,19 @@
     <!-- Base application theme. -->
     <style name="Theme.Shelter" parent="Theme.MaterialComponents.DayNight">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/white</item>
-        <item name="colorPrimaryVariant">@color/black</item>
+        <item name="colorPrimary">@color/greyBackground</item>
+        <item name="colorPrimaryVariant">@color/cardBgColor</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/secondary</item>
         <item name="colorSecondaryVariant">@color/black</item>
-        <item name="colorOnSecondary">@color/white</item>
-        <item name="android:navigationBarColor">
-            @android:color/transparent
-        </item>
-        <item name="android:statusBarColor">
-            @android:color/transparent
-        </item>
-        <item name="android:toolbarStyle">@android:color/transparent</item>
+        <item name="colorPrimarySurface">@color/greyBackground</item>
+        <item name="colorSurface">@color/greyBackground</item>
+        <item name="background">@color/greyBackground</item>
 
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:statusBarColor" tools:targetApi="l">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">false</item>
         <item name="android:fontFamily">@font/rubik</item>
     </style>
 
