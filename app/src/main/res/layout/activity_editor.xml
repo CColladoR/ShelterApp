@@ -44,15 +44,7 @@
                     app:civ_border_color="@color/primary_color"
                     app:civ_border_width="2dp"/>
 
-               <!-- <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_alignBottom="@+id/pet_image"
-                    android:layout_alignEnd="@+id/pet_image"
-                    android:src="@drawable/ic_tooltip_photo"
-                    android:onClick="onClickPickImage"
-                    android:contentDescription="Imagen de la mascota"
-                    />-->
+              
             </RelativeLayout>
 
             <TextView
@@ -64,10 +56,10 @@
                 android:layout_marginBottom="10dp"
                 android:fontFamily="@font/rubik_medium"
                 android:textColor="@color/secondary_dark"
-                android:textSize="22dp"
+                android:textSize="22sp"
                 android:textAlignment="center"
                 android:elegantTextHeight="true"
-                android:text="Introduce los datos del animal"/>
+                android:text="@string/hint_pet_name_title"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -211,7 +203,7 @@
                             android:digits="0123456789"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="0"
+                            android:text="@string/zero"
                             />
 
                     </com.google.android.material.textfield.TextInputLayout>
@@ -250,6 +242,7 @@
                             android:layout_height="wrap_content"
                             android:text="@string/yes"
                             android:onClick="onRadioButtonClicked"
+                            android:buttonTint="@color/secondary_dark"
                             />
 
                         <RadioButton
@@ -258,6 +251,7 @@
                             android:layout_height="wrap_content"
                             android:checked="true"
                             android:text="@string/no"
+                            android:buttonTint="@color/secondary_dark"
                             android:onClick="onRadioButtonClicked"
                             />
 
@@ -298,6 +292,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/yes"
+                            android:buttonTint="@color/secondary_dark"
                             android:onClick="onRadioButtonClicked"
                             />
 
@@ -307,6 +302,8 @@
                             android:layout_height="wrap_content"
                             android:checked="true"
                             android:text="@string/no"
+                            android:buttonTint="@color/secondary_dark"
+
                             android:onClick="onRadioButtonClicked"
 
                             />
@@ -410,7 +407,7 @@
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/edit_pet_adopted_date"
                             android:focusableInTouchMode="false"
-                            android:text="01/01/2000"
+                            android:text="@string/default_date"
                             android:visibility="gone"
                             android:clickable="true"
                             android:layout_width="match_parent"
