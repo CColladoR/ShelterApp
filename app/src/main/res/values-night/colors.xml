@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="greyBackground">#11F3EDED</color>
+    <color name="greyText">#FFB8B0B0</color>
+    <color name="cardBgColor">#FF111111</color>
+</resources>
