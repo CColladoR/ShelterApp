@@ -42,8 +42,10 @@
                     android:layout_height="200dp"
                     android:onClick="onClickPickImage"
                     android:src="@drawable/img_dog"
+                    android:padding="5dp"
                     app:civ_border_color="@color/primary_color"
-                    app:civ_border_width="2dp"/>
+                    app:civ_border_width="2dp"
+                    android:elevation="4dp"/>
 
 
             </RelativeLayout>
@@ -380,6 +382,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/yes"
+                            android:buttonTint="@color/secondary_dark"
                             android:onClick="onRadioButtonClicked"
                             />
 
@@ -389,6 +392,7 @@
                             android:layout_height="wrap_content"
                             android:checked="true"
                             android:text="@string/no"
+                            android:buttonTint="@color/secondary_dark"
                             android:onClick="onRadioButtonClicked"
 
                             />

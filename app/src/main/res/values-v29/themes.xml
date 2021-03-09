@@ -15,9 +15,8 @@
         <!-- Custom Theme -->
 
         <item name="android:fontFamily">@font/rubik</item>
-        <item name="android:navigationBarColor">
-            @android:color/transparent
-        </item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+
     </style>
 
 
