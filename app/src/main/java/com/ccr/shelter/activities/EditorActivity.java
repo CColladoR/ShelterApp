@@ -41,12 +41,13 @@ import com.ccr.shelter.petData.Pet;
 import com.ccr.shelter.viewmodel.PetViewModel;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.google.android.material.textfield.TextInputEditText;
+import com.kieronquinn.monetcompat.app.MonetCompatActivity;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 
-public class EditorActivity extends AppCompatActivity {
+public class EditorActivity extends MonetCompatActivity {
 
     private PetViewModel mPetViewModel;
 
@@ -74,7 +75,7 @@ public class EditorActivity extends AppCompatActivity {
     String name;
     private int mGender = 0;
     String breed;
-    int weight;
+    double weight;
     byte[] imageAsByteArray;
     String birthdate;
     String details;
@@ -94,12 +95,12 @@ public class EditorActivity extends AppCompatActivity {
             Manifest.permission.WRITE_EXTERNAL_STORAGE
     };
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setTheme(R.style.Theme_Shelter);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editor);
+
 
         verifyStoragePermissions(this);
         setViews();
@@ -332,7 +333,7 @@ public class EditorActivity extends AppCompatActivity {
 
         name = mNameEditText.getText().toString();
         breed = mBreedEditText.getText().toString();
-        weight = Integer.parseInt(mWeightEditText.getText().toString());
+        weight = Double.parseDouble(mWeightEditText.getText().toString());
         BitmapDrawable imageDrawable = (BitmapDrawable) mImageView.getDrawable();
         imageAsByteArray = getBytesFromBitmap(imageDrawable.getBitmap());
         details = mDetails.getText().toString();
@@ -406,7 +407,7 @@ public class EditorActivity extends AppCompatActivity {
 
     public byte[] getBytesFromBitmap(Bitmap bitmap) {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 10, stream);
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 5, stream);
         return stream.toByteArray();
     }
 

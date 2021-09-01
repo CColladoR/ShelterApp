@@ -200,13 +200,13 @@
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/edit_pet_weight"
-                            android:inputType="number|textNoSuggestions"
+                            android:inputType="numberDecimal|textNoSuggestions"
                             android:imeOptions="actionNext"
                             android:maxLines="1"
-                            android:digits="0123456789"
+                            android:digits="0123456789."
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/zero"
+                            android:text="@string/zeroDecimal"
                             />
 
                     </com.google.android.material.textfield.TextInputLayout>

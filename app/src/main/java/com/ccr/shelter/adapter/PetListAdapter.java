@@ -86,8 +86,6 @@ public class PetListAdapter extends RecyclerView.Adapter<PetListAdapter.PetViewH
     public void onBindViewHolder(@NonNull PetListAdapter.PetViewHolder holder, int position) {
         if (mPets != null) {
 
-
-
             Pet current = mPets.get(position);
             holder.nameView.setText(current.getName());
             holder.breedView.setText(current.getBreed());
@@ -101,9 +99,11 @@ public class PetListAdapter extends RecyclerView.Adapter<PetListAdapter.PetViewH
             try {
                 Date date1=new SimpleDateFormat("dd/MM/yyyy").parse(current.getBirthdate());;
                 Date date2 = Calendar.getInstance().getTime();
+
                 long yearsOldDate = (date2.getTime() - date1.getTime()) / 86400000 / 365;
-                if (yearsOldDate != 0) {
-                    holder.ageView.setText(yearsOldDate + " años");
+                if (yearsOldDate != 0)
+                {
+                 holder.ageView.setText(yearsOldDate + " años");
                 }
                 else {
                     holder.ageView.setVisibility(View.GONE);

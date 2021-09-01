@@ -15,7 +15,7 @@ public class Pet {
     @NonNull
     private String breed;
     private int gender;
-    private int weight;
+    private double weight;
     private String birthdate;
     private String details;
     @ColumnInfo(typeAffinity = ColumnInfo.BLOB)
@@ -31,7 +31,7 @@ public class Pet {
     private String adoptValue;
 
 
-    public Pet(int id,@NonNull String name,@NonNull String breed, int gender, String birthdate, int weight, String details, byte[] image, int ster, int vacc, int adopted, String adoptDate, String sterValue, String vaccValue, String adoptValue) {
+    public Pet(int id,@NonNull String name,@NonNull String breed, int gender, String birthdate, double weight, String details, byte[] image, int ster, int vacc, int adopted, String adoptDate, String sterValue, String vaccValue, String adoptValue) {
         this.id = id;
         this.name = name;
         this.breed = breed;
@@ -70,7 +70,7 @@ public class Pet {
         return gender;
     }
 
-    public int getWeight() {
+    public double getWeight() {
         return weight;
     }
 

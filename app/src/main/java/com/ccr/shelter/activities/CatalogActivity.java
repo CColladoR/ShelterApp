@@ -20,11 +20,13 @@ import com.ccr.shelter.adapter.PetListAdapter;
 import com.ccr.shelter.petData.Pet;
 import com.ccr.shelter.viewmodel.PetViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.kieronquinn.monetcompat.app.MonetCompatActivity;
+import com.kieronquinn.monetcompat.core.MonetCompat;
 
 import java.util.List;
 import java.util.Objects;
 
-public class CatalogActivity extends AppCompatActivity {
+public class CatalogActivity extends MonetCompatActivity {
 
     public static final int NEW_WORD_ACTIVITY_REQUEST_CODE = 1;
 
